@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "helmet": "^3.21.2",
+    "cors": "*",
+    "web3": "*",
+    "openzeppelin-solidity": ""
+  }
+}

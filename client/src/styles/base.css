@@ -1,0 +1,11 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  overflow-x: hidden;
+  background-color: white !important;
+  font-size: 1.6rem;
+  margin: 0;
+}
