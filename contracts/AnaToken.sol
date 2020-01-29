@@ -2,11 +2,10 @@ pragma solidity >=0.4.21 <0.7.0;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 
-
  /**
  * @title Anatoken
- 
  */
+
 contract AnaToken is ERC20 {
   string public name = "AnaToken";
   string public symbol = "ANA";
@@ -21,7 +20,6 @@ contract AnaToken is ERC20 {
   function metaTransfer(bytes memory signature, address to, uint256 value, uint256 nonce, uint256 reward) public returns (bool) {
     bytes32 metaHash = metaTransferHash(to,value,nonce,reward);
     address signer = getSigner(metaHash,signature);
-    //make sure signer doesn't come back as 0x0
     
 		require(signer!=address(0));
     require(nonce == replayNonce[signer]);
