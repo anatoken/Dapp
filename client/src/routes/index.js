@@ -3,6 +3,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "../utils/history";
 import Home from "./home";
 import Register from "./register";
+import Balance from "./balance";
 
 const AppRouter = () => (
     <Fragment>
@@ -10,6 +11,8 @@ const AppRouter = () => (
             <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/register" exact component={Register} />
+                <Route path="/balance" exact component={Balance} />
+
             </Switch>
         </Router>
     </Fragment>

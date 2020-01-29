@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
-import Register from "../views/register/Register";
+import Register from "../views/register/Register.js";
 
 const RegisterRouter = () => (
     <Fragment>
