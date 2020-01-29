@@ -21,18 +21,13 @@ class Balance extends React.Component {
       const deployedToken = AnatokenContract.networks[networkId];
       const instance = new web3.eth.Contract(
         AnatokenContract.abi,
-        deployedToken && deployedToken.address
+        deployedToken && "0x6cB5Bc17D4A4e3ED81B88afea34B1004b02Af58E"
       );
-      var balance = web3.eth.getBalance(accounts[0].address);
-      console.log(balance)
-      balance = web3.toDecimal(balance); 
-
-
+      console.log(accounts[0]);
+      const balance = await instance.methods.balanceOf(accounts[0]).call();
+      console.log(balance);
       this.setState({ web3, accounts, contract: instance, balance });
     } catch (error) {
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
-      );
       console.error(error);
     }
   };
