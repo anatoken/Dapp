@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -6,44 +6,52 @@ import Grid from '@material-ui/core/Grid';
 import Title from "../../components/home/Welcome";
 import Button from '@material-ui/core/Button';
 import history from "../../utils/history";
+import AnatokenContract from '../../contracts/AnaToken.json';
+import getWeb3 from "../../getWeb3";
+import Web3 from "web3";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  button: {
+class Balance extends React.Component {
+  state = { web3: null, accounts: null, contract: null, balance: null};
 
-  },
-  marginAutoContainer: {
-    width: '100%',
-    height: 80,
-    display: 'flex',
-  },
-  marginAutoItem: {
-    margin: 'auto'
-  },
-}));
+  componentDidMount = async () => {
+    try {
+      const web3 = await getWeb3();
+      const accounts = await web3.eth.getAccounts();
+      const networkId = await web3.eth.net.getId();
+      const deployedToken = AnatokenContract.networks[networkId];
+      const instance = new web3.eth.Contract(
+        AnatokenContract.abi,
+        deployedToken && "0x6cB5Bc17D4A4e3ED81B88afea34B1004b02Af58E"
+      );
+      console.log(accounts[0]);
+      const balance = await instance.methods.balanceOf(accounts[0]).call();
+      console.log(balance);
+      this.setState({ web3, accounts, contract: instance, balance });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-function Balance() {
-  const classes = useStyles();
+  render() {
+   
 
-  return (
-    <Fragment>
-      <CssBaseline />
-      <Container fixed>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Title title="Your balance:" />
-            <div className={classes.marginAutoContainer}>
-              <div className={classes.marginAutoItem}>
-                <h2>hoiii</h2>
-              </div>
-            </div>
+
+ 
+    return (
+      <Fragment>
+        <CssBaseline />
+        <Container fixed>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Title title="Your balance:" />
+
+                  <h2>{this.state.balance}</h2>
+
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </Fragment>
-  );
+        </Container>
+      </Fragment>
+    );
+  }
 }
-
 export default Balance;

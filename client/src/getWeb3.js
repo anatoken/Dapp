@@ -6,6 +6,7 @@ const getWeb3 = () =>
     window.addEventListener("load", async () => {
       // Modern dapp browsers...
       if (window.ethereum) {
+        console.log("eth")
         const web3 = new Web3(window.ethereum);
         try {
           // Request account access if needed
@@ -19,6 +20,7 @@ const getWeb3 = () =>
       // Legacy dapp browsers...
       else if (window.web3) {
         // Use Mist/MetaMask's provider.
+        console.log("Test");
         const web3 = window.web3;
         console.log("Injected web3 detected.");
         resolve(web3);
