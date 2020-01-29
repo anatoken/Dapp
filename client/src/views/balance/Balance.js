@@ -10,67 +10,53 @@ import AnatokenContract from '../../contracts/AnaToken.json';
 import getWeb3 from "../../getWeb3";
 import Web3 from "web3";
 
+class Balance extends React.Component {
+  state = { web3: null, accounts: null, contract: null, balance: null};
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  button: {
-
-  },
-  marginAutoContainer: {
-    width: '100%',
-    height: 80,
-    display: 'flex',
-  },
-  marginAutoItem: {
-    margin: 'auto'
-  },
-}));
-
-function Balance() {
-  const [balance, setBalance] = useState(0);
-
-  useEffect(() => {
-    async function getBalance() {
-      console.log("test2");
+  componentDidMount = async () => {
+    try {
       const web3 = await getWeb3();
       const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
       const deployedToken = AnatokenContract.networks[networkId];
       const instance = new web3.eth.Contract(
         AnatokenContract.abi,
-        deployedToken && deployedToken.address,
-        );
+        deployedToken && deployedToken.address
+      );
+      var balance = web3.eth.getBalance(accounts[0].address);
+      console.log(balance)
+      balance = web3.toDecimal(balance); 
 
-        var balance = web3.eth.getBalance(accounts[0].address);
-        console.log("test:");
-        console.log(balance);
-        balance = web3.toDecimal(balance);
-        setBalance(balance);
+
+      this.setState({ web3, accounts, contract: instance, balance });
+    } catch (error) {
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`,
+      );
+      console.error(error);
     }
-    getBalance();
-  }, []);
+  };
 
-  const classes = useStyles();
+  render() {
+   
 
-  return (
-    <Fragment>
-      <CssBaseline />
-      <Container fixed>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Title title="Your balance:" />
-            <div className={classes.marginAutoContainer}>
-              <div className={classes.marginAutoItem}>
-                <h2>{balance}</h2>
-              </div>
-            </div>
+
+ 
+    return (
+      <Fragment>
+        <CssBaseline />
+        <Container fixed>
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <Title title="Your balance:" />
+
+                  <h2>{this.state.balance}</h2>
+
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </Fragment>
-  );
+        </Container>
+      </Fragment>
+    );
+  }
 }
-
 export default Balance;
