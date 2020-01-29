@@ -60,11 +60,11 @@ const Register = props => {
     errors
   } = useForm(submit, validate, role);
 
-  useEffect(() => {
-    // Check if address exists in contract
+  // useEffect(() => {
+  //   // Check if address exists in contract
 
     
-  });
+  // });
 
   const selectChange = event => {
     setRoles(event.target.value);

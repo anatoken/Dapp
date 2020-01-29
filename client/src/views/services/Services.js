@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -7,49 +7,27 @@ import Title from "../../components/home/Welcome";
 import Button from '@material-ui/core/Button';
 import history from "../../utils/history";
 import MaterialTable from 'material-table';
-import Icons from '@material-ui/icons';
+import ServiceProvider from '../../contracts/ServiceProvider';
+import getWeb3 from "../../getWeb3";
 
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  button: {
-
-  },
-  marginAutoContainer: {
-    width: '100%',
-    height: 80,
-    display: 'flex',
-  },
-  marginAutoItem: {
-    margin: 'auto'
-  },
-}));
-
-state = { web3: null, accounts: null, contract: null };
-
-  componentDidMount = async () => {
+function Services() {
+  state = { web3: null, accounts: null, contract: null };
+    componentDidMount = async () => {
     try {
-      // Get network provider and web3 instance.
       const web3 = await getWeb3();
 
-      // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
 
-      // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      const deployedToken = AnatokenContract.networks[networkId];
+      const deployedServiceProvider = ServiceProvider.networks[networkId];
       const instance = new web3.eth.Contract(
-        AnatokenContract.abi,
-        deployedToken && deployedToken.address,
+        ServiceProvider.abi,
+        deployedServiceProvider && deployedServiceProvider.address,
       );
 
-      // Set web3, accounts, and contract to the state, and then proceed with an
-      // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contract: instance });
+
     } catch (error) {
-      // Catch any errors for any of the above operations.
       alert(
         `Failed to load web3, accounts, or contract. Check console for details.`,
       );
@@ -57,44 +35,136 @@ state = { web3: null, accounts: null, contract: null };
     }
   };
 
+  // mockup data, should be removed
+  const serviceData = [
+    {
+      code: 123,
+      serviceName: "Frozen 2",
+      serviceType: "Movie ticket",
+      location: "Accra",
+      startdate: "1",
+      enddate: "2",
+      instructor: "Kristina Prusinskaite",
+      costs: "3",
+    },
+    {
+      code: 234,
+      serviceName: "Blockchain Minor",
+      serviceType: "Education course",
+      location: "Accra",
+      startdate: "1",
+      enddate: "2",
+      instructor: "Kristina Prusinskaite",
+      costs: "3",
+    }
+  ];
 
-function Services() {
-  const classes = useStyles();
-  const [renderRow, setRenderRow] = React.useState('');
+  // gets cources that were created by the current user, should be available only for service provider
+  async function getMyCourcesCodes(){
+    var resp = await this.state.contract.methods["emitServices"]().call();
+    let srvc = resp.events.EmitServices.returnValues.codes;
+    let fullServices = [];
+    srvc.forEach(function(item){
+     fullServices.push(getFullServiceByCode(item.code))
+   })
+   return fullServices;
+  }
+
+  // function for getting all services (useful for all other roles)
+  async function emitAllServices(){
+    var resp = await this.state.contract.methods["emitAllServices"]().call();
+    let c = resp.events.EmitServices.returnValues.codes;
+    let fullServices = [];
+     c.forEach(function(item){
+      fullServices.push(getFullServiceByCode(item.code))
+    })
+    return fullServices;
+  }
+
+  // returns a full service object
+  async function getFullServiceByCode(code){
+    var resp = await this.state.contract.methods["findServiceByCode"](code).call();
+    return resp.events.ServiceIsRead.returnValues;
+  }
+
+  // creates new service
+  async function createNewService(service){
+    var resp = await this.state.contract.methods["createService"]({      
+      code: service.code,
+      serviceType: service.serviceType,
+      serviceName: service.serviceName,
+      location: service.location,
+      startdate: service.startdate,
+      enddate: service.enddate,
+      instructor: service.instructor,
+      costs: service.cost
+    }).call();
+    updateData();
+  }
+
+  function updateData(){
+    // This needs to update the list of services depending on the user role
+    // if (serviceProviderRole){
+    //   getMyCourcesCodes();
+    // } else {
+    //   emitAllServices();
+    // }
+  }
+
+  // this should be called on edit
+  async function editService(service){
+    var resp = await this.state.contract.methods["updateService"]({      
+      code: service.code,
+      serviceType: service.serviceType,
+      serviceName: service.serviceName,
+      location: service.location,
+      startdate: service.startdate,
+      enddate: service.enddate,
+      instructor: service.instructor,
+      costs: service.cost
+    }).call();
+    updateData();
+  }
+
+  //deleting the service
+  async function deleteService(service){
+    var resp = await this.state.contract.methods["deleteService"]({code: service.code}).call();
+    updateData();
+  }
 
   const [state, setState] = React.useState({
     columns: [
-      { title: 'Name', field: 'name' },
-      { title: 'Surname', field: 'surname' },
-      { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-      {
-        title: 'Birth Place',
-        field: 'birthCity',
-        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-      },
+      { title: 'Code', field: 'code', type: 'numeric' },
+      { title: 'Name', field: 'serviceName' },
+      { title: 'Type', field: 'serviceType' },
+      { title: 'Location', field: 'location' },
+      { title: 'Start Date', field: 'startdate', type: 'date'  },
+      { title: 'End Date', field: 'enddate', type: 'date'  },
+      { title: 'Instructor', field: 'instructor' },
+      { title: 'Price', field: 'costs', type: 'numeric'  },
     ],
-    data: [
-      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-      {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
-        birthCity: 34,
-      },
-    ],
+    data: serviceData,  // I set this data above in component on mount, but it doesn't work
   });
 
-  createService(
-    code=1,
-    serviceType='a',
-    serviceName='a',
-    location='a',
-    startdate=1,
-    enddate=2,
-    instructor='a',
-    costs='a'
- )
+  const useStyles = makeStyles(theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    button: {
+  
+    },
+    marginAutoContainer: {
+      width: '100%',
+      height: 80,
+      display: 'flex',
+    },
+    marginAutoItem: {
+      margin: 'auto'
+    },
+  }));
+  const classes = useStyles();
 
+  
   return (
     <Fragment>
       <CssBaseline />
@@ -106,7 +176,7 @@ function Services() {
               <div className={classes.marginAutoItem}>
 
               <MaterialTable
-                title="Editable Example"
+                title="My Services"
                 columns={state.columns}
                 data={state.data}
                 editable={{
