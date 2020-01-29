@@ -4,7 +4,6 @@ import axios from "axios";
 import AnatokenContract from './contracts/AnaToken.json';
 import getWeb3 from "./getWeb3";
 
-import "./App.css";
 
 class App extends Component {
   state = { web3: null, accounts: null, contract: null };
@@ -16,7 +15,7 @@ class App extends Component {
 
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
-
+      console.log(accounts)
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedToken = AnatokenContract.networks[networkId];
