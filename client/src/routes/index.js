@@ -5,6 +5,7 @@ import Home from "./home";
 import Register from "./register";
 import Balance from "./balance";
 import Collector from "./collector";
+import Services from "./services";
 
 import getWeb3 from "../utils/getWeb3";
 import Web3Context from "../utils/Web3Context";
@@ -25,7 +26,7 @@ const AppRouter = () => {
   }
 
   useEffect(() => {
-    if(web3 == "") {
+    if (web3 == "") {
       loadWeb3();
     }
   });
@@ -39,6 +40,7 @@ const AppRouter = () => {
             <Route path="/register" exact component={Register} />
             <Route path="/balance" exact component={Balance} />
             <Route path="/collector" exact component={Collector} />
+            <Route path="/services" exact component={Services} />
           </Switch>
         </Router>
       </Web3Context.Provider>

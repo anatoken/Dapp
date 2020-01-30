@@ -53,13 +53,13 @@ const useStyles = makeStyles(theme => ({
   marginAutoItem: {
     margin: 'auto',
     '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: 200,
-        }
-    },
-    button: {
-        marginTop: 20
+      margin: theme.spacing(1),
+      width: 200,
     }
+  },
+  button: {
+    marginTop: 20
+  }
 }));
 
 const Register = props => {
@@ -90,7 +90,7 @@ const Register = props => {
       console.error(error);
     }
   }
-  
+
   const checkRole = async (instance) => {
     if (await instance.methods.userHasRole("collector").call()) {
       // redirect to collector
@@ -113,9 +113,9 @@ const Register = props => {
     setLoading(false);
   }
 
-  useEffect(() => {    
-    if(Object.entries(web3).length != 0 && contract == "") {
-      loadContract(web3);      
+  useEffect(() => {
+    if (Object.entries(web3).length != 0 && contract == "") {
+      loadContract(web3);
     }
   });
 
@@ -133,7 +133,7 @@ const Register = props => {
     }
   }
 
-  if(isLoading) {
+  if (isLoading) {
     return <Loader />;
   }
 
@@ -141,7 +141,7 @@ const Register = props => {
     <Fragment>
       <CssBaseline />
       <Container fixed>
-        <Grid 
+        <Grid
           container
           direction="column"
           justify="center"
