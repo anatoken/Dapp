@@ -3,7 +3,6 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "../utils/history";
 import Home from "./home";
 import Register from "./register";
-import Balance from "./balance";
 import Collector from "./collector";
 import Services from "./services";
 
@@ -38,7 +37,6 @@ const AppRouter = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/register" exact component={Register} />
-            <Route path="/balance" exact component={Balance} />
             <Route path="/collector" exact component={Collector} />
             <Route path="/services" exact component={Services} />
           </Switch>

@@ -66,16 +66,15 @@ const Register = props => {
   const classes = useStyles();
   const web3 = React.useContext(Web3Context);
   const [isLoading, setLoading] = React.useState(true);
-  const [role, setRoles] = React.useState("");
   const [contract, setContract] = React.useState("");
 
   const loadContract = async (web3) => {
     try {
       const networkId = await web3.eth.net.getId();
-      const deployedToken = RBACExtendABI.networks[networkId];
+      const deployedContract = RBACExtendABI.networks[networkId];
       const instance = new web3.eth.Contract(
         RBACExtendABI.abi,
-        deployedToken && deployedToken.address,
+        deployedContract && deployedContract.address,
       );
 
       setContract(instance);
@@ -119,17 +118,13 @@ const Register = props => {
     }
   });
 
-  const selectChange = event => {
-    setRoles(event.target.value);
-  };
-
   const setRole = async (role) => {
     setLoading(true);
     const accounts = await web3.eth.getAccounts();
     const hasRole = await contract.methods.addUserToRole(accounts[0], role).send({ from: accounts[0] });
 
     if (hasRole) {
-      return this.history.push(`/${role}`);
+      return history.push(`/${role}`);
     }
   }
 

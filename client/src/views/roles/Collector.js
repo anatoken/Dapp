@@ -10,20 +10,22 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
+import Balance from '../../components/Balance';
+
 const Collector = () => {
   return (
     <Fragment>
-    <CssBaseline />
-    <Container fixed>
-      <Grid 
-        container
-        direction="column"
-        justify="center"
-        alignItems="center">
-        
-      </Grid>
-    </Container>
-  </Fragment>
+      <CssBaseline />
+      <Container fixed>
+        <Grid
+          container
+          direction="column"
+          justify="center"
+          alignItems="center">
+          <Balance />
+        </Grid>
+      </Container>
+    </Fragment>
   );
 }
 export default Collector;
