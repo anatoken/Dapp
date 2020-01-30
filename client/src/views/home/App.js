@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import history from "../../utils/history";
 import Image from "../../images/ethereum.png";
 import Typography from '@material-ui/core/Typography';
+import { spacing } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,7 +58,7 @@ function App() {
               Cleaning up the world with your help. 
             </Typography>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} m={25}>
             <Button variant="contained" color="primary" onClick={() => history.push("/register")} className={classes.button}>
               Register
           </Button>

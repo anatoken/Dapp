@@ -91,12 +91,9 @@ contract RBAC {
   */
   function addMember(address _member, bytes32 _roleId)
     public
+    returns(bool)
   {
   require(roleExists(_roleId), "Role doesn't exist.");
-  require(
-    hasRole(msg.sender, roles[_roleId].adminRoleId),
-    "User can't add members."
-  );
 
   require(
     !hasRole(_member, _roleId),
@@ -105,6 +102,8 @@ contract RBAC {
 
     roles[_roleId].members[_member] = true;
     emit MemberAdded(_member, _roleId);
+
+    return true;
   }
 
     /**

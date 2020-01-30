@@ -18,8 +18,8 @@ contract Recycle {
     uint dateCollected;
   }
     
-  constructor() public {
-    roleHelper = new RBACExtend();
+  constructor(address RBACAddress) public {
+    roleHelper = RBACExtend(RBACAddress);
   }
 
   event PlasticIsAccounted(

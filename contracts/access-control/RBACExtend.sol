@@ -27,8 +27,8 @@ contract RBACExtend {
     * @param user address of the user 
     * @param roleId role to which user going to be added to 
     */
-  function addUserToRole(address user, string memory roleId) private {
-    roles.addMember(user, stringToBytes32(roleId));
+  function addUserToRole(address user, string memory roleId) public returns(bool) {
+    return roles.addMember(user, stringToBytes32(roleId));
   }
   
   /**

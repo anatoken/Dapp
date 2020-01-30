@@ -7,7 +7,7 @@ import Title from "../../components/home/Welcome";
 import Button from '@material-ui/core/Button';
 import history from "../../utils/history";
 import AnatokenContract from '../../contracts/AnaToken.json';
-import getWeb3 from "../../getWeb3";
+import getWeb3 from "../../utils/getWeb3";
 import Web3 from "web3";
 
 class Balance extends React.Component {

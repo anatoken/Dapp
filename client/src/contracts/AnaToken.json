@@ -6010,12 +6010,12 @@
         }
       },
       "links": {},
-      "address": "0xDdeD464e20C8aC3C9FA3C432e67D3738b1278a4C",
-      "transactionHash": "0x2a03ab98f378183131e5ed525bfcfbcdebfcfee40b98e118874d6677bc6706fc"
+      "address": "0x90a86533E96c6F6884F265dA0E8478D23D04fa76",
+      "transactionHash": "0x7238148b809b1a37a4108f430b5efd6ada1303f2397398e3dda5da7efb62e4da"
     }
   },
   "schemaVersion": "3.0.19",
-  "updatedAt": "2020-01-29T12:15:01.391Z",
+  "updatedAt": "2020-01-30T20:28:11.220Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {
