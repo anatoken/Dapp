@@ -37,7 +37,7 @@ const AppRouter = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/register" exact component={Register} />
-            <Route path="/collector" exact component={Collector} />
+            <Route path="/role" exact component={Collector} />
             <Route path="/services" exact component={Services} />
           </Switch>
         </Router>

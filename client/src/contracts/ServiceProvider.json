@@ -834,7 +834,7 @@
           },
           {
             "constant": false,
-            "id": 583,
+            "id": 584,
             "name": "serviseCreator",
             "nodeType": "VariableDeclaration",
             "scope": 1243,
@@ -846,9 +846,9 @@
               "typeString": "mapping(address => struct ServiceProvider.Service[])"
             },
             "typeName": {
-              "id": 582,
+              "id": 583,
               "keyType": {
-                "id": 579,
+                "id": 580,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "308:7:3",
@@ -866,7 +866,7 @@
               "valueType": {
                 "baseType": {
                   "contractScope": null,
-                  "id": 580,
+                  "id": 581,
                   "name": "Service",
                   "nodeType": "UserDefinedTypeName",
                   "referencedDeclaration": 578,
@@ -876,7 +876,7 @@
                     "typeString": "struct ServiceProvider.Service"
                   }
                 },
-                "id": 581,
+                "id": 582,
                 "length": null,
                 "nodeType": "ArrayTypeName",
                 "src": "319:9:3",
@@ -891,7 +891,7 @@
           },
           {
             "constant": false,
-            "id": 587,
+            "id": 588,
             "name": "serviceCode",
             "nodeType": "VariableDeclaration",
             "scope": 1243,
@@ -903,9 +903,9 @@
               "typeString": "mapping(uint256 => struct ServiceProvider.Service)"
             },
             "typeName": {
-              "id": 586,
+              "id": 587,
               "keyType": {
-                "id": 584,
+                "id": 585,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
                 "src": "365:4:3",
@@ -922,7 +922,7 @@
               },
               "valueType": {
                 "contractScope": null,
-                "id": 585,
+                "id": 586,
                 "name": "Service",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 578,
@@ -1246,7 +1246,7 @@
                 },
                 {
                   "constant": false,
-                  "id": 614,
+                  "id": 615,
                   "indexed": false,
                   "name": "serviceName",
                   "nodeType": "VariableDeclaration",
@@ -9880,7 +9880,7 @@
           },
           {
             "constant": false,
-            "id": 583,
+            "id": 584,
             "name": "serviseCreator",
             "nodeType": "VariableDeclaration",
             "scope": 1243,
@@ -9892,9 +9892,9 @@
               "typeString": "mapping(address => struct ServiceProvider.Service[])"
             },
             "typeName": {
-              "id": 582,
+              "id": 583,
               "keyType": {
-                "id": 579,
+                "id": 580,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
                 "src": "308:7:3",
@@ -9912,7 +9912,7 @@
               "valueType": {
                 "baseType": {
                   "contractScope": null,
-                  "id": 580,
+                  "id": 581,
                   "name": "Service",
                   "nodeType": "UserDefinedTypeName",
                   "referencedDeclaration": 578,
@@ -9922,7 +9922,7 @@
                     "typeString": "struct ServiceProvider.Service"
                   }
                 },
-                "id": 581,
+                "id": 582,
                 "length": null,
                 "nodeType": "ArrayTypeName",
                 "src": "319:9:3",
@@ -9937,7 +9937,7 @@
           },
           {
             "constant": false,
-            "id": 587,
+            "id": 588,
             "name": "serviceCode",
             "nodeType": "VariableDeclaration",
             "scope": 1243,
@@ -9949,9 +9949,9 @@
               "typeString": "mapping(uint256 => struct ServiceProvider.Service)"
             },
             "typeName": {
-              "id": 586,
+              "id": 587,
               "keyType": {
-                "id": 584,
+                "id": 585,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
                 "src": "365:4:3",
@@ -9968,7 +9968,7 @@
               },
               "valueType": {
                 "contractScope": null,
-                "id": 585,
+                "id": 586,
                 "name": "Service",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 578,

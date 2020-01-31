@@ -11,12 +11,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { Person, School, Business } from '@material-ui/icons';
-
 import Loader from "../../components/Loader";
-
 import Web3Context from "../../utils/Web3Context";
 import history from "../../utils/history";
 import RBACExtendABI from "../../contracts/RBACExtend.json";
+import {useGlobal} from "reactn";
+
 
 const roles = [
   {
@@ -67,6 +67,7 @@ const Register = props => {
   const web3 = React.useContext(Web3Context);
   const [isLoading, setLoading] = React.useState(true);
   const [contract, setContract] = React.useState("");
+  const [global, setGlobal] = useGlobal();
 
   const loadContract = async (web3) => {
     try {
@@ -94,25 +95,33 @@ const Register = props => {
     if (await instance.methods.userHasRole("collector").call()) {
       // redirect to collector
       console.log("is collector");
-      return history.push("/collector");
+      setGlobal({role: "collector"});
+      return history.push("/role");
     }
 
     if (await instance.methods.userHasRole("university").call()) {
       // redirect to University
       console.log("is University");
-      return history.push("/university");
+      setGlobal({role: "university"});
+      return history.push("/role");
     }
 
     if (await instance.methods.userHasRole("recyclePlant").call()) {
       // redirect to recylceplant
       console.log("is recycle plant");
-      return history.push("/recyclePlant");
+      setGlobal({role: "recyclePlant"});
+      console.log(`ROLE: ${global.role}`);
+      return history.push("/role");
     }
 
+    console.log(`ROLE: ${global.role}`);
     setLoading(false);
   }
 
   useEffect(() => {
+    setGlobal({
+      role: ""
+    })
     if (Object.entries(web3).length != 0 && contract == "") {
       loadContract(web3);
     }
