@@ -96,14 +96,14 @@ const Register = props => {
       // redirect to collector
       console.log("is collector");
       setGlobal({role: "collector"});
-      return history.push("/collector");
+      return history.push("/role");
     }
 
     if (await instance.methods.userHasRole("university").call()) {
       // redirect to University
       console.log("is University");
       setGlobal({role: "university"});
-      return history.push("/university");
+      return history.push("/role");
     }
 
     if (await instance.methods.userHasRole("recyclePlant").call()) {
@@ -111,7 +111,7 @@ const Register = props => {
       console.log("is recycle plant");
       setGlobal({role: "recyclePlant"});
       console.log(`ROLE: ${global.role}`);
-      return history.push("/recyclePlant");
+      return history.push("/role");
     }
 
     console.log(`ROLE: ${global.role}`);
