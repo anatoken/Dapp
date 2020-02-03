@@ -16,6 +16,7 @@ const Services = props => {
   const web3 = React.useContext(Web3Context);
   const [isLoading, setLoading] = React.useState(true);
   const [contract, setContract] = React.useState("");
+  const [data, setData] = React.useState("");
 
   const loadContract = async (web3) => {
     try {
@@ -27,6 +28,7 @@ const Services = props => {
       );
 
       setContract(instance);
+      console.log("Contract is set");
     } catch (error) {
       alert(
         `Failed to load contract. Check console for details.`,
@@ -40,6 +42,11 @@ const Services = props => {
     if (Object.entries(web3).length != 0 && contract == "") {
       loadContract(web3);
     }
+
+    if(contract != "") {
+      emitAllServices();
+    }
+
   });
 
   // mockup data, should be removed
@@ -52,7 +59,7 @@ const Services = props => {
       startdate: "1",
       enddate: "2",
       instructor: "Kristina Prusinskaite",
-      costs: "3",
+      costs: "1",
     },
     {
       code: 234,
@@ -62,7 +69,7 @@ const Services = props => {
       startdate: "1",
       enddate: "2",
       instructor: "Kristina Prusinskaite",
-      costs: "3",
+      costs: "5",
     }
   ];
 
@@ -79,33 +86,57 @@ const Services = props => {
 
   // function for getting all services (useful for all other roles)
   async function emitAllServices() {
-    var resp = await this.state.contract.methods["emitAllServices"]().call();
-    let c = resp.events.EmitServices.returnValues.codes;
-    let fullServices = [];
-    c.forEach(function (item) {
-      fullServices.push(getFullServiceByCode(item.code))
-    })
-    return fullServices;
+    var resp = await contract.methods.emitAllServices().call();
+    console.log("RESPONSE:");
+    console.log(resp);
+    if (resp.length > 0){
+      let c = resp.events.EmitServices.returnValues.codes;
+      let fullServices = [];
+      c.forEach(function (item) {
+        fullServices.push(getFullServiceByCode(item.code))
+      })
+  
+      console.log(fullServices);
+  
+      setData(fullServices);
+      return fullServices;
+    }
+    return resp
   }
 
   // returns a full service object
   async function getFullServiceByCode(code) {
-    var resp = await this.state.contract.methods["findServiceByCode"](code).call();
+    var resp = await contract.methods["findServiceByCode"](code).call();
     return resp.events.ServiceIsRead.returnValues;
   }
 
   // creates new service
   async function createNewService(service) {
-    var resp = await this.state.contract.methods["createService"]({
-      code: service.code,
-      serviceType: service.serviceType,
-      serviceName: service.serviceName,
-      location: service.location,
-      startdate: service.startdate,
-      enddate: service.enddate,
-      instructor: service.instructor,
-      costs: service.cost
-    }).call();
+    console.log("Create new service:");
+    console.log(
+      parseInt(service.code),
+      service.serviceType.toString(),
+      service.serviceName.toString(),
+      service.location.toString(),
+      service.startdate.getTime(),
+      service.enddate.getTime(),
+      service.instructor.toString(),
+      parseInt(service.costs)
+    );
+    const accounts = await web3.eth.getAccounts();
+    console.log(accounts[0]);
+    var resp =  await contract.methods.createService(
+      2,
+      service.serviceType.toString(),
+      service.serviceName.toString(),
+      service.location.toString(),
+      1,
+      1,
+      service.instructor.toString(),
+      1
+    ).send({ from: accounts[0]});
+
+    console.log(resp);
     updateData();
   }
 
@@ -194,6 +225,7 @@ const Services = props => {
                           setState(prevState => {
                             const data = [...prevState.data];
                             data.push(newData);
+                            createNewService(newData);
                             return { ...prevState, data };
                           });
                         }, 600);

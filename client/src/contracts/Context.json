@@ -584,8 +584,13 @@
     "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {},
+<<<<<<< HEAD
   "schemaVersion": "3.0.19",
   "updatedAt": "2020-02-03T09:55:18.278Z",
+=======
+  "schemaVersion": "3.0.21",
+  "updatedAt": "2020-01-31T09:07:07.086Z",
+>>>>>>> 862995267a54e8eef196c62b79f1dea0a2acfef0
   "devdoc": {
     "methods": {}
   },
