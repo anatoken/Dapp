@@ -3093,12 +3093,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xF504E6C3181Ff461af0015BBbe248a43C24ED1Ee",
-      "transactionHash": "0xb5676221dd826d2b150239db301fa7fea7d9e7eed8bc1ce54b7ea2c505cd97c4"
+      "address": "0x56Bd0687F32F8e9DA42ecfbC89d70E59e69F4B29",
+      "transactionHash": "0xb79749916b716aed1381d047e182ebd962f0fad9235077cfd31621f25b6eaadb"
     }
   },
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-01-31T09:13:25.171Z",
+  "updatedAt": "2020-02-03T12:23:08.785Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Djamaile Rahamat",
