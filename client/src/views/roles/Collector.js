@@ -5,15 +5,23 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-
+import { useGlobal } from "reactn";
 import Balance from '../../components/Balance';
 import Transfer from '../../components/Transfer';
+import history from "../../utils/history";
 
 const Collector = () => {
+  const [global, setGlobal] = useGlobal();
+
+  useEffect(() => {
+    if (!global.role) {
+      history.push("/register");
+    }
+  }, []);
+
   return (
     <Fragment>
       <CssBaseline />
@@ -23,6 +31,7 @@ const Collector = () => {
           direction="column"
           justify="center"
           alignItems="center">
+          <p>Role: {global.role}</p>
           <Balance />
           <Transfer />
         </Grid>
