@@ -91,23 +91,23 @@ const Register = props => {
   }
 
   const checkRole = async (instance) => {
-    if (await instance.methods.userHasRole("collector").call()) {
-      // redirect to collector
-      console.log("is collector");
-      return history.push("/collector");
-    }
+    // if (await instance.methods.userHasRole("collector").call()) {
+    //   // redirect to collector
+    //   console.log("is collector");
+    //   return history.push("/collector");
+    // }
 
-    if (await instance.methods.userHasRole("university").call()) {
-      // redirect to University
-      console.log("is University");
-      return history.push("/university");
-    }
+    // if (await instance.methods.userHasRole("university").call()) {
+    //   // redirect to University
+    //   console.log("is University");
+    //   return history.push("/university");
+    // }
 
-    if (await instance.methods.userHasRole("recyclePlant").call()) {
-      // redirect to recylceplant
-      console.log("is recycle plant");
-      return history.push("/recyclePlant");
-    }
+    // if (await instance.methods.userHasRole("recyclePlant").call()) {
+    //   // redirect to recylceplant
+    //   console.log("is recycle plant");
+    //   return history.push("/recyclePlant");
+    // }
 
     setLoading(false);
   }
@@ -121,6 +121,7 @@ const Register = props => {
   const setRole = async (role) => {
     setLoading(true);
     const accounts = await web3.eth.getAccounts();
+    console.log(accounts[0])
     const hasRole = await contract.methods.addUserToRole(accounts[0], role).send({ from: accounts[0] });
 
     if (hasRole) {
@@ -129,7 +130,7 @@ const Register = props => {
   }
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader position="absolute" />;
   }
 
   return (

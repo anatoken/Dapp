@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 
 import Balance from '../../components/Balance';
+import Transfer from '../../components/Transfer';
 
 const Collector = () => {
   return (
@@ -23,6 +24,7 @@ const Collector = () => {
           justify="center"
           alignItems="center">
           <Balance />
+          <Transfer />
         </Grid>
       </Container>
     </Fragment>
