@@ -9,8 +9,15 @@ body {
   margin: 0;
 }
 
-.centered {
-  position: fixed;
+.centered-relative {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centered-absolute {
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

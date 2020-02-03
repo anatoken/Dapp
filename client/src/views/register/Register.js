@@ -15,7 +15,7 @@ import Loader from "../../components/Loader";
 import Web3Context from "../../utils/Web3Context";
 import history from "../../utils/history";
 import RBACExtendABI from "../../contracts/RBACExtend.json";
-import {useGlobal} from "reactn";
+import { useGlobal } from "reactn";
 
 
 const roles = [
@@ -95,21 +95,21 @@ const Register = props => {
     if (await instance.methods.userHasRole("collector").call()) {
       // redirect to collector
       console.log("is collector");
-      setGlobal({role: "collector"});
+      setGlobal({ role: "collector" });
       return history.push("/role");
     }
 
     if (await instance.methods.userHasRole("university").call()) {
       // redirect to University
       console.log("is University");
-      setGlobal({role: "university"});
+      setGlobal({ role: "university" });
       return history.push("/role");
     }
 
     if (await instance.methods.userHasRole("recyclePlant").call()) {
       // redirect to recylceplant
       console.log("is recycle plant");
-      setGlobal({role: "recyclePlant"});
+      setGlobal({ role: "recyclePlant" });
       console.log(`ROLE: ${global.role}`);
       return history.push("/role");
     }
@@ -130,6 +130,7 @@ const Register = props => {
   const setRole = async (role) => {
     setLoading(true);
     const accounts = await web3.eth.getAccounts();
+    console.log(accounts[0])
     const hasRole = await contract.methods.addUserToRole(accounts[0], role).send({ from: accounts[0] });
 
     if (hasRole) {
@@ -138,7 +139,7 @@ const Register = props => {
   }
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader position="absolute" />;
   }
 
   return (
