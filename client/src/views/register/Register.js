@@ -3,20 +3,14 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import useForm from "./useForm";
-import validate from "./validation";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import { Person, School, Business } from '@material-ui/icons';
 import Loader from "../../components/Loader";
 import Web3Context from "../../utils/Web3Context";
 import history from "../../utils/history";
 import RBACExtendABI from "../../contracts/RBACExtend.json";
 import { useGlobal } from "reactn";
-
 
 const roles = [
   {
@@ -40,10 +34,17 @@ const useStyles = makeStyles(theme => ({
       width: 200,
     },
   },
-  paper: {
-    height: 100,
-    width: 120,
+  button: {
+    height: 80,
+    width: 90,
+    padding: 10,
     textAlign: 'center',
+    backgroundColor: '#3f51b5',
+    color: '#fff'
+  },
+  label: {
+    display: 'block',
+    fontSize: 11,
   },
   marginAutoContainer: {
     width: '100%',
@@ -56,9 +57,6 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       width: 200,
     }
-  },
-  button: {
-    marginTop: 20
   }
 }));
 
@@ -146,41 +144,39 @@ const Register = props => {
     <Fragment>
       <CssBaseline />
       <Container fixed>
+        <Typography variant="h4" gutterBottom className={classes.text}>
+          What's your role?
+        </Typography>
         <Grid
           container
-          direction="column"
           justify="center"
-          alignItems="center">
-          <Grid item xs={12}>
-            <Typography variant="h4" gutterBottom className={classes.text}>
-              What's your role?
-            </Typography>
-            <div className={classes.root}>
-              <Grid container justify="center" spacing={3}>
-                <Grid item>
-                  <Paper className={classes.paper} onClick={() => setRole("collector")}>
-                    <Person />
-                    Collector
-                  </Paper>
-                </Grid>
-                <Grid item>
-                  <Paper className={classes.paper} onClick={() => setRole("recyclePlant")}>
-                    <Business />
-                    Recycler
-                  </Paper>
-                </Grid>
-                <Grid item>
-                  <Paper className={classes.paper} onClick={() => setRole("university")}>
-                    <School />
-                    University
-                  </Paper>
-                </Grid>
-              </Grid>
-            </div>
+          alignItems="center"
+          spacing={2}
+          style={{
+            height: '90vh'
+          }}>
+
+          <Grid item sm={4}>
+            <Button variant="contained" color="primary" classes={{ root: classes.button, label: classes.label }} onClick={() => setRole("collector")}>
+              <Person style={{ width: '100%', fontSize: 40, color: '#fff' }} />
+              Collector
+            </Button>
+          </Grid>
+          <Grid item sm={4}>
+            <Button variant="contained" color="primary" classes={{ root: classes.button, label: classes.label }} onClick={() => setRole("recyclePlant")}>
+              <Business style={{ width: '100%', fontSize: 40, color: '#fff' }} />
+              Recycler
+            </Button>
+          </Grid>
+          <Grid item sm={4}>
+            <Button variant="contained" color="primary" classes={{ root: classes.button, label: classes.label }} onClick={() => setRole("university")}>
+              <School style={{ width: '100%', fontSize: 40, color: '#fff' }} />
+              University
+            </Button>
           </Grid>
         </Grid>
       </Container>
-    </Fragment>
+    </Fragment >
   );
 };
 

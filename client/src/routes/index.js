@@ -1,5 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import { Router, Route, Switch } from "react-router-dom";
+import Navbar from "../components/Navbar";
+
 import history from "../utils/history";
 import Home from "./home";
 import Register from "./register";
@@ -33,11 +35,12 @@ const AppRouter = () => {
   return (
     <Fragment>
       <Web3Context.Provider value={web3}>
+        <Navbar />
         <Router history={history}>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/register" exact component={Register} />
-            <Route path="/role" exact component={Collector} />
+            <Route path="/collector" exact component={Collector} />
             <Route path="/services" exact component={Services} />
           </Switch>
         </Router>
