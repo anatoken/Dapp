@@ -46,13 +46,15 @@
          string memory instructor,
          uint256 costs
       ) public returns(
-         uint code_
+         uint returnCode
       ){
-         serviseCreator[msg.sender].push(Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs));
-         serviceCode[code] = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);
-         allServices[totalServices] = code;
+         Service memory service = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);
+         serviseCreator[msg.sender].push(service);
+         serviceCode[code] = service;
+         allServices.push(code);
          totalServices++;
          emit ServiceIsCreated(code, serviceName);
+         
          return code;
       }
 

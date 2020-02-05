@@ -7,6 +7,8 @@ import "./RBAC.sol";
 contract RBACExtend {
   RBAC internal roles;
   
+  event userAddedtoRole(address user, string role, bool succeeded);
+
   constructor() public{
     roles = new RBAC(msg.sender);
     roles.addRole(stringToBytes32("collector"), stringToBytes32("ROOT"));
@@ -27,8 +29,10 @@ contract RBACExtend {
     * @param user address of the user 
     * @param roleId role to which user going to be added to 
     */
-  function addUserToRole(address user, string memory roleId) public returns(bool) {
-    return roles.addMember(user, stringToBytes32(roleId));
+  function addUserToRole(address user, string memory roleId) public {
+    bool userAdded = roles.addMember(user, stringToBytes32(roleId));
+
+    emit userAddedtoRole(user, roleId, userAdded);
   }
   
   /**

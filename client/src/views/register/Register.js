@@ -1,4 +1,7 @@
 import React, { Fragment, useEffect } from "react";
+
+import Image from "../../images/environment.svg";
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -11,21 +14,6 @@ import Web3Context from "../../utils/Web3Context";
 import history from "../../utils/history";
 import RBACExtendABI from "../../contracts/RBACExtend.json";
 import { useGlobal } from "reactn";
-
-const roles = [
-  {
-    value: 'sp',
-    label: 'Service Provider',
-  },
-  {
-    value: 'cl',
-    label: 'Collector',
-  },
-  {
-    value: 'rp',
-    label: 'Recycle plant',
-  }
-];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -57,7 +45,11 @@ const useStyles = makeStyles(theme => ({
       margin: theme.spacing(1),
       width: 200,
     }
-  }
+  },
+  image: {
+    width: 200,
+    margin: 25
+  },
 }));
 
 const Register = props => {
@@ -76,9 +68,11 @@ const Register = props => {
         deployedContract && deployedContract.address,
       );
 
-      setContract(instance);
+      const accounts = await web3.eth.getAccounts();
+      console.log(accounts[0])
 
-      await checkRole(instance);
+      setContract(instance);
+      await checkRole(instance, accounts);
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -89,30 +83,29 @@ const Register = props => {
     }
   }
 
-  const checkRole = async (instance) => {
-    if (await instance.methods.userHasRole("collector").call()) {
+  const checkRole = async (instance, accounts) => {
+    if (await instance.methods.userHasRole("collector").call({ from: accounts[0] })) {
       // redirect to collector
       console.log("is collector");
       setGlobal({ role: "collector" });
-      return history.push("/role");
+      return history.push("/collector");
     }
 
-    if (await instance.methods.userHasRole("university").call()) {
+    if (await instance.methods.userHasRole("university").call({ from: accounts[0] })) {
       // redirect to University
       console.log("is University");
       setGlobal({ role: "university" });
-      return history.push("/role");
+      return history.push("/university");
     }
 
-    if (await instance.methods.userHasRole("recyclePlant").call()) {
+    if (await instance.methods.userHasRole("recyclePlant").call({ from: accounts[0] })) {
       // redirect to recylceplant
       console.log("is recycle plant");
       setGlobal({ role: "recyclePlant" });
       console.log(`ROLE: ${global.role}`);
-      return history.push("/role");
+      return history.push("/recycleplant");
     }
 
-    console.log(`ROLE: ${global.role}`);
     setLoading(false);
   }
 
@@ -128,11 +121,12 @@ const Register = props => {
   const setRole = async (role) => {
     setLoading(true);
     const accounts = await web3.eth.getAccounts();
-    console.log(accounts[0])
     const hasRole = await contract.methods.addUserToRole(accounts[0], role).send({ from: accounts[0] });
 
-    if (hasRole) {
-      return history.push(`/${role}`);
+    if (hasRole.events.userAddedtoRole.returnValues.succeeded) {
+      return history.push("/recycleplant");
+    } else {
+      // error melding
     }
   }
 
@@ -144,9 +138,6 @@ const Register = props => {
     <Fragment>
       <CssBaseline />
       <Container fixed>
-        <Typography variant="h4" gutterBottom className={classes.text}>
-          What's your role?
-        </Typography>
         <Grid
           container
           justify="center"
@@ -155,7 +146,10 @@ const Register = props => {
           style={{
             height: '90vh'
           }}>
-
+          <img src={Image} className={classes.image} />
+          <Typography variant="h4" gutterBottom className={classes.text}>
+            What's your role?
+          </Typography>
           <Grid item sm={4}>
             <Button variant="contained" color="primary" classes={{ root: classes.button, label: classes.label }} onClick={() => setRole("collector")}>
               <Person style={{ width: '100%', fontSize: 40, color: '#fff' }} />
