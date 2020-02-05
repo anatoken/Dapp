@@ -16,7 +16,7 @@ class Loader extends Component {
       <div className={`centered-${position}`}>
         <LoaderPackage
           type="Puff"
-          color="#00BFFF"
+          color="#3f51b5"
           height={100}
           width={100}
         />

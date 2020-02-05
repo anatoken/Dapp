@@ -25,6 +25,13 @@ const useStyles = makeStyles(theme => ({
     height: 100,
     width: '100%',
     textAlign: 'center',
+    backgroundColor: '#3f51b5',
+    color: '#fff'
+  },
+  span: {
+    display: 'inline-block',
+    verticalAlign: 'middle',
+    lineHeight: 'normal'
   },
   marginAutoContainer: {
     width: '100%',
@@ -91,7 +98,7 @@ const Balance = props => {
           alignItems="center">
           <Typography variant="h4" gutterBottom className={classes.text}>
             <Paper className={classes.paper}>
-              ANA: {balance}
+              <span className={classes.span}>ANA: {balance}</span>
             </Paper>
           </Typography>
         </Grid>

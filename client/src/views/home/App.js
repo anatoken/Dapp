@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   button: {
-    borderRadius:30
+    borderRadius: 30
   },
   marginAutoContainer: {
     width: '100%',
@@ -29,8 +29,8 @@ const useStyles = makeStyles(theme => ({
     width: 200,
     margin: 25
   },
-  text:{
-    textAlign:'center'
+  text: {
+    textAlign: 'center'
   }
 }));
 
@@ -46,22 +46,25 @@ function App() {
           direction="column"
           justify="center"
           alignItems="center"
+          style={{
+            height: '90vh'
+          }}
         >
-          <Grid item xs={12}>
+          <Grid item l={12}>
             <img src={Image} className={classes.image} />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item l={12}>
             <Typography variant="h4" gutterBottom className={classes.text}>
               Anatoken
             </Typography>
             <Typography variant="subtitle1" gutterBottom>
-              Cleaning up the world with your help. 
+              Cleaning up the world with your help.
             </Typography>
           </Grid>
-          <Grid item xs={12} m={25}>
+          <Grid item l={12}>
             <Button variant="contained" color="primary" onClick={() => history.push("/register")} className={classes.button}>
-              Register
-          </Button>
+              Let's get started
+            </Button>
           </Grid>
         </Grid>
       </Container>

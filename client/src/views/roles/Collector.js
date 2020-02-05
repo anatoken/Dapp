@@ -16,11 +16,11 @@ import history from "../../utils/history";
 const Collector = () => {
   const [global, setGlobal] = useGlobal();
 
-  useEffect(() => {
-    if (!global.role) {
-      history.push("/register");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!global.role) {
+  //     history.push("/register");
+  //   }
+  // }, []);
 
   return (
     <Fragment>
