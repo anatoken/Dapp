@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   text: {
-    width: '100%'
+    width: '100%',
   },
   paper: {
     marginTop: 20,
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   span: {
     display: 'inline-block',
     verticalAlign: 'middle',
-    lineHeight: 'normal'
+    lineHeight: 'normal',
   },
   marginAutoContainer: {
     width: '100%',
@@ -43,7 +43,8 @@ const useStyles = makeStyles(theme => ({
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
       width: 200,
-    }
+    },
+
   },
   button: {
     marginTop: 20

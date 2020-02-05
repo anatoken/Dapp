@@ -63,6 +63,7 @@ const Register = props => {
     try {
       const networkId = await web3.eth.net.getId();
       const deployedContract = RBACExtendABI.networks[networkId];
+      console.log(deployedContract.address);
       const instance = new web3.eth.Contract(
         RBACExtendABI.abi,
         deployedContract && deployedContract.address,
