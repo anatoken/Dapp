@@ -577,7 +577,7 @@
   "source": "   pragma solidity ^0.5.11;\r\n\r\n   contract ServiceProvider {\r\n\r\n      struct Service {\r\n         uint code;\r\n         address owner;\r\n         string serviceType;\r\n         string serviceName;\r\n         string location;\r\n         uint startdate;\r\n         uint enddate;\r\n         string instructor;\r\n         uint256 costs;\r\n      }\r\n\r\n      mapping(address => Service[]) public serviseCreator;\r\n      mapping(uint => Service) public serviceCode;\r\n      mapping(uint => uint) public codeIndexAllServices;\r\n\r\n      uint[] public allServices = [0];\r\n\r\n      event ServiceIsCreated(uint code, string serviceName);\r\n      event ServiceIsUpdated(uint code, string serviceName);\r\n      event ServiceIsDeleted(uint code);\r\n      event ServiceIsRead(uint code_,\r\n         address owner,\r\n         string serviceType,\r\n         string serviceName,\r\n         string location,\r\n         uint startdate,\r\n         uint enddate,\r\n         string instructor,\r\n         uint256 costs\r\n      );\r\n      event EmitServices(address owner, uint[]);\r\n\r\n      uint totalServices = 0;\r\n\r\n      modifier legalCode(uint code){\r\n         require(code != 0, \"Code 0 is not allowed.\");\r\n         require(codesEqual((serviceCode[code]).code, 0), \"This code is already used.\");\r\n        _;\r\n      }\r\n\r\n      function createService(\r\n         uint code,\r\n         string memory serviceType,\r\n         string memory serviceName,\r\n         string memory location,\r\n         uint startdate,\r\n         uint enddate,\r\n         string memory instructor,\r\n         uint256 costs\r\n      ) public legalCode(code) returns(bool){\r\n         Service memory s = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);\r\n         serviseCreator[msg.sender].push(s);\r\n         serviceCode[code] = s;\r\n         allServices.push(code);\r\n         codeIndexAllServices[code] = (allServices.length - 1);\r\n         totalServices++;\r\n         emit ServiceIsCreated(code, serviceName);\r\n         return true;\r\n      }\r\n\r\n      function updateService(\r\n         uint code,\r\n         string memory serviceType,\r\n         string memory serviceName,\r\n         string memory location,\r\n         uint startdate,\r\n         uint enddate,\r\n         string memory instructor,\r\n         uint256 costs\r\n      ) public {\r\n         Service memory s = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);\r\n         serviseCreator[msg.sender].push(s);\r\n         serviceCode[code] = s;\r\n         for(uint256 i = 0; i < serviseCreator[msg.sender].length; i++){\r\n            Service memory s = serviseCreator[msg.sender][i];\r\n            if(codesEqual(code, s.code)){\r\n               s.serviceType = serviceType;\r\n               s.serviceName = serviceName;\r\n               s.location = location;\r\n               s.startdate = startdate;\r\n               s.enddate = enddate;\r\n               s.instructor = instructor;\r\n               s.costs = costs;\r\n               serviseCreator[msg.sender][i] = s;\r\n               serviceCode[code] = s;\r\n               emit ServiceIsUpdated(code, serviceName);\r\n            }\r\n         }\r\n      }\r\n// codeIndexAllServices\r\n      function deleteService(uint code) public {\r\n         require(totalServices > 0, 'No services are found');\r\n         for(uint256 i = 0; i < serviseCreator[msg.sender].length; i++){\r\n            if(codesEqual(code, serviseCreator[msg.sender][i].code)){\r\n               serviseCreator[msg.sender][i] = serviseCreator[msg.sender][serviseCreator[msg.sender].length-1];\r\n               delete serviseCreator[msg.sender][serviseCreator[msg.sender].length-1];\r\n               if (serviceCode[code].owner == msg.sender){\r\n                  delete serviceCode[code];\r\n                  allServices[codeIndexAllServices[code]] = allServices[totalServices];\r\n                  delete allServices[totalServices];\r\n                  delete codeIndexAllServices[code];// avoid 0 index TODO\r\n                  totalServices--;\r\n                  emit ServiceIsDeleted(code);\r\n               }\r\n            }\r\n         }\r\n      }\r\n\r\n      function findServiceByCode (uint code) public returns (\r\n         uint code_,\r\n         address owner,\r\n         string memory serviceType,\r\n         string memory serviceName,\r\n         string memory location,\r\n         uint startdate,\r\n         uint enddate,\r\n         string memory instructor,\r\n         uint256 costs\r\n      ) {\r\n         Service memory s = serviceCode[code];\r\n         // emit ServiceIsRead(\r\n         //    s.code,\r\n         //    s.owner,\r\n         //    s.serviceType,\r\n         //    s.serviceName,\r\n         //    s.location,\r\n         //    s.startdate,\r\n         //    s.enddate,\r\n         //    s.instructor,\r\n         //    s.costs\r\n         // );\r\n         return (\r\n            s.code,\r\n            s.owner,\r\n            s.serviceType,\r\n            s.serviceName,\r\n            s.location,\r\n            s.startdate,\r\n            s.enddate,\r\n            s.instructor,\r\n            s.costs\r\n         );\r\n      }\r\n\r\n      function findServiceByName (string memory serviceName) public returns (\r\n         uint code,\r\n         address owner,\r\n         string memory serviceType,\r\n         string memory serviceName_,\r\n         string memory location,\r\n         uint startdate,\r\n         uint enddate,\r\n         string memory instructor,\r\n         uint256 costs\r\n      ) {\r\n         for(uint256 i = 0; i < serviseCreator[msg.sender].length; i++){\r\n            Service memory s = serviseCreator[msg.sender][i];\r\n            if(nameEquals(serviceName, s.serviceName)){\r\n               // emit ServiceIsRead(\r\n               //    s.code,\r\n               //    s.owner,\r\n               //    s.serviceType,\r\n               //    s.serviceName,\r\n               //    s.location,\r\n               //    s.startdate,\r\n               //    s.enddate,\r\n               //    s.instructor,\r\n               //    s.costs\r\n               // );\r\n               return (\r\n                  s.code,\r\n                  s.owner,\r\n                  s.serviceType,\r\n                  s.serviceName,\r\n                  s.location,\r\n                  s.startdate,\r\n                  s.enddate,\r\n                  s.instructor,\r\n                  s.costs\r\n               );\r\n            }\r\n         }\r\n         revert('Service is not found');\r\n      }\r\n\r\n      function emitServices() public view returns (uint[] memory){\r\n         uint[] memory codes;\r\n         for(uint256 i = 0; i < serviseCreator[msg.sender].length; i++){\r\n            codes[i] = serviseCreator[msg.sender][i].code;\r\n         }\r\n         // emit EmitServices(msg.sender, codes);\r\n         return codes;\r\n      }\r\n\r\n      function emitAllServices() public {\r\n         emit EmitServices(msg.sender, allServices);\r\n         // return allServices;\r\n      }\r\n\r\n      function codesEqual (uint a, uint b) internal pure returns (bool) {\r\n         return a == b;\r\n      }\r\n\r\n      function nameEquals (string memory a, string memory b)  internal pure returns (bool){\r\n         return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));\r\n      }\r\n\r\n   }",
   "sourcePath": "C:/Users/prush/Documents/git/Dapp/contracts/ServiceProvider.sol",
   "ast": {
-    "absolutePath": "/C/Users/prush/Documents/git/Dapp/contracts/ServiceProvider.sol",
+    "absolutePath": "/Users/djamaile/Desktop/sideprojects/Dapp/contracts/ServiceProvider.sol",
     "exportedSymbols": {
       "ServiceProvider": [
         1230
@@ -620,7 +620,7 @@
                 "name": "code",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "97:9:3",
+                "src": "92:9:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -631,7 +631,7 @@
                   "id": 560,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "97:4:3",
+                  "src": "92:4:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -646,7 +646,7 @@
                 "name": "owner",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "118:13:3",
+                "src": "112:13:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -657,7 +657,7 @@
                   "id": 562,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "118:7:3",
+                  "src": "112:7:3",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -673,7 +673,7 @@
                 "name": "serviceType",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "143:18:3",
+                "src": "136:18:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -684,7 +684,7 @@
                   "id": 564,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "143:6:3",
+                  "src": "136:6:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -699,7 +699,7 @@
                 "name": "serviceName",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "173:18:3",
+                "src": "165:18:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -710,7 +710,7 @@
                   "id": 566,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "173:6:3",
+                  "src": "165:6:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -725,7 +725,7 @@
                 "name": "location",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "203:15:3",
+                "src": "194:15:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -736,7 +736,7 @@
                   "id": 568,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "203:6:3",
+                  "src": "194:6:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -751,7 +751,7 @@
                 "name": "startdate",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "230:14:3",
+                "src": "220:14:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -762,7 +762,7 @@
                   "id": 570,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "230:4:3",
+                  "src": "220:4:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -777,7 +777,7 @@
                 "name": "enddate",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "256:12:3",
+                "src": "245:12:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -788,7 +788,7 @@
                   "id": 572,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "256:4:3",
+                  "src": "245:4:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -803,7 +803,7 @@
                 "name": "instructor",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "280:17:3",
+                "src": "268:17:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -814,7 +814,7 @@
                   "id": 574,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "280:6:3",
+                  "src": "268:6:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -829,7 +829,7 @@
                 "name": "costs",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "309:13:3",
+                "src": "296:13:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -840,7 +840,7 @@
                   "id": 576,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "309:7:3",
+                  "src": "296:7:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -875,14 +875,14 @@
                 "id": 579,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "350:7:3",
+                "src": "334:7:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "342:29:3",
+              "src": "326:29:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Service_$578_storage_$dyn_storage_$",
                 "typeString": "mapping(address => struct ServiceProvider.Service[])"
@@ -894,7 +894,7 @@
                   "name": "Service",
                   "nodeType": "UserDefinedTypeName",
                   "referencedDeclaration": 578,
-                  "src": "361:7:3",
+                  "src": "345:7:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_struct$_Service_$578_storage_ptr",
                     "typeString": "struct ServiceProvider.Service"
@@ -903,7 +903,7 @@
                 "id": 581,
                 "length": null,
                 "nodeType": "ArrayTypeName",
-                "src": "361:9:3",
+                "src": "345:9:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_array$_t_struct$_Service_$578_storage_$dyn_storage_ptr",
                   "typeString": "struct ServiceProvider.Service[]"
@@ -932,14 +932,14 @@
                 "id": 584,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "410:4:3",
+                "src": "393:4:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "402:24:3",
+              "src": "385:24:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Service_$578_storage_$",
                 "typeString": "mapping(uint256 => struct ServiceProvider.Service)"
@@ -950,7 +950,7 @@
                 "name": "Service",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 578,
-                "src": "418:7:3",
+                "src": "401:7:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_Service_$578_storage_ptr",
                   "typeString": "struct ServiceProvider.Service"
@@ -9298,7 +9298,7 @@
     "src": "3:7143:3"
   },
   "legacyAST": {
-    "absolutePath": "/C/Users/prush/Documents/git/Dapp/contracts/ServiceProvider.sol",
+    "absolutePath": "/Users/djamaile/Desktop/sideprojects/Dapp/contracts/ServiceProvider.sol",
     "exportedSymbols": {
       "ServiceProvider": [
         1230
@@ -9341,7 +9341,7 @@
                 "name": "code",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "97:9:3",
+                "src": "92:9:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -9352,7 +9352,7 @@
                   "id": 560,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "97:4:3",
+                  "src": "92:4:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -9367,7 +9367,7 @@
                 "name": "owner",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "118:13:3",
+                "src": "112:13:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -9378,7 +9378,7 @@
                   "id": 562,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "118:7:3",
+                  "src": "112:7:3",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -9394,7 +9394,7 @@
                 "name": "serviceType",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "143:18:3",
+                "src": "136:18:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -9405,7 +9405,7 @@
                   "id": 564,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "143:6:3",
+                  "src": "136:6:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -9420,7 +9420,7 @@
                 "name": "serviceName",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "173:18:3",
+                "src": "165:18:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -9431,7 +9431,7 @@
                   "id": 566,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "173:6:3",
+                  "src": "165:6:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -9446,7 +9446,7 @@
                 "name": "location",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "203:15:3",
+                "src": "194:15:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -9457,7 +9457,7 @@
                   "id": 568,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "203:6:3",
+                  "src": "194:6:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -9472,7 +9472,7 @@
                 "name": "startdate",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "230:14:3",
+                "src": "220:14:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -9483,7 +9483,7 @@
                   "id": 570,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "230:4:3",
+                  "src": "220:4:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -9498,7 +9498,7 @@
                 "name": "enddate",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "256:12:3",
+                "src": "245:12:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -9509,7 +9509,7 @@
                   "id": 572,
                   "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "256:4:3",
+                  "src": "245:4:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -9524,7 +9524,7 @@
                 "name": "instructor",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "280:17:3",
+                "src": "268:17:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -9535,7 +9535,7 @@
                   "id": 574,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "280:6:3",
+                  "src": "268:6:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -9550,7 +9550,7 @@
                 "name": "costs",
                 "nodeType": "VariableDeclaration",
                 "scope": 578,
-                "src": "309:13:3",
+                "src": "296:13:3",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -9561,7 +9561,7 @@
                   "id": 576,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "309:7:3",
+                  "src": "296:7:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -9596,14 +9596,14 @@
                 "id": 579,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "350:7:3",
+                "src": "334:7:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "342:29:3",
+              "src": "326:29:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Service_$578_storage_$dyn_storage_$",
                 "typeString": "mapping(address => struct ServiceProvider.Service[])"
@@ -9615,7 +9615,7 @@
                   "name": "Service",
                   "nodeType": "UserDefinedTypeName",
                   "referencedDeclaration": 578,
-                  "src": "361:7:3",
+                  "src": "345:7:3",
                   "typeDescriptions": {
                     "typeIdentifier": "t_struct$_Service_$578_storage_ptr",
                     "typeString": "struct ServiceProvider.Service"
@@ -9624,7 +9624,7 @@
                 "id": 581,
                 "length": null,
                 "nodeType": "ArrayTypeName",
-                "src": "361:9:3",
+                "src": "345:9:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_array$_t_struct$_Service_$578_storage_$dyn_storage_ptr",
                   "typeString": "struct ServiceProvider.Service[]"
@@ -9653,14 +9653,14 @@
                 "id": 584,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "410:4:3",
+                "src": "393:4:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
                 }
               },
               "nodeType": "Mapping",
-              "src": "402:24:3",
+              "src": "385:24:3",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Service_$578_storage_$",
                 "typeString": "mapping(uint256 => struct ServiceProvider.Service)"
@@ -9671,7 +9671,7 @@
                 "name": "Service",
                 "nodeType": "UserDefinedTypeName",
                 "referencedDeclaration": 578,
-                "src": "418:7:3",
+                "src": "401:7:3",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_Service_$578_storage_ptr",
                   "typeString": "struct ServiceProvider.Service"
@@ -18020,7 +18020,7 @@
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+    "version": "0.5.12+commit.7709ece9.Emscripten.clang"
   },
   "networks": {
     "5777": {

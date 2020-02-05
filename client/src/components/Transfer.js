@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import Loader from '../components/Loader';
 import axios from 'axios';
-
+import {isValid} from "../utils/isValidAddress";
 import Web3Context from "../utils/Web3Context";
 import AnatokenContract from '../contracts/AnaToken.json';
 
@@ -86,7 +86,7 @@ const Tranfer = props => {
     if (Object.entries(web3).length != 0 && contract == "") {
       loadContract(web3);
     }
-  });
+  }, []);
 
   const transferToken = async () => {
     setLoading(true);
@@ -151,6 +151,10 @@ const Tranfer = props => {
     setLoading(false);
   }
 
+
+  
+
+
   return (
     <Fragment>
       <CssBaseline />
@@ -161,7 +165,6 @@ const Tranfer = props => {
           justify="center"
           alignItems="center">
 
-          <Paper className={classes.paper}>
             {isLoading ? <Loader position="relative" /> :
               <Fragment>
                 <TextField
@@ -184,12 +187,11 @@ const Tranfer = props => {
                   label="Address" />
                 <br />
                 <br />
-                <Fab variant="extended" disabled={amount == 0 && address == ""} onClick={() => transferToken()} >
+                <Fab variant="contained"  color="primary" disabled={amount == 0 && isValid(address) === false} onClick={() => transferToken()} style={{width:'100%'}} >
                   Transfer
                 </Fab>
               </Fragment>
             }
-          </Paper>
         </Grid>
       </Container>
     </Fragment >
