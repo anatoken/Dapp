@@ -11,12 +11,15 @@ import ServiceProvider from '../../contracts/ServiceProvider';
 
 import getWeb3 from "../../utils/getWeb3";
 import Web3Context from "../../utils/Web3Context";
+import { useGlobal } from "reactn";
+
 
 const Services = props => {
   const web3 = React.useContext(Web3Context);
   const [isLoading, setLoading] = React.useState(true);
   const [contract, setContract] = React.useState("");
-  const [data, setData] = React.useState("");
+  const [data, setData] = React.useState([]);
+  const [global, setGlobal] = useGlobal();
 
   const loadContract = async (web3) => {
     try {
@@ -28,7 +31,10 @@ const Services = props => {
       );
 
       setContract(instance);
+      emitAllServices(instance);
       console.log("Contract is set");
+      console.log(instance);
+      return instance;
     } catch (error) {
       alert(
         `Failed to load contract. Check console for details.`,
@@ -36,6 +42,7 @@ const Services = props => {
 
       console.error(error);
     }
+    return null;
   }
 
   useEffect(() => {
@@ -43,39 +50,36 @@ const Services = props => {
       loadContract(web3);
     }
 
-    if(contract != "") {
-      emitAllServices();
-    }
-
-  });
+    console.log(data);
+  }, [web3, data]);
 
   // mockup data, should be removed
-  const serviceData = [
-    {
-      code: 123,
-      serviceName: "Frozen 2",
-      serviceType: "Movie ticket",
-      location: "Accra",
-      startdate: "1",
-      enddate: "2",
-      instructor: "Kristina Prusinskaite",
-      costs: "1",
-    },
-    {
-      code: 234,
-      serviceName: "Blockchain Minor",
-      serviceType: "Education course",
-      location: "Accra",
-      startdate: "1",
-      enddate: "2",
-      instructor: "Kristina Prusinskaite",
-      costs: "5",
-    }
-  ];
+  // const serviceData = [
+  //   {
+  //     code: 123,
+  //     serviceName: "Frozen 2",
+  //     serviceType: "Movie ticket",
+  //     location: "Accra",
+  //     startdate: "1",
+  //     enddate: "2",
+  //     instructor: "Kristina Prusinskaite",
+  //     costs: "1",
+  //   },
+  //   {
+  //     code: 234,
+  //     serviceName: "Blockchain Minor",
+  //     serviceType: "Education course",
+  //     location: "Accra",
+  //     startdate: "1",
+  //     enddate: "2",
+  //     instructor: "Kristina Prusinskaite",
+  //     costs: "5",
+  //   }
+  // ];
 
   // gets cources that were created by the current user, should be available only for service provider
-  async function getMyCourcesCodes() {
-    var resp = await this.state.contract.methods["emitServices"]().call();
+  async function getMyCourcesCodes(contract) {
+    var resp = await contract.methods["emitServices"]().call();
     let srvc = resp.events.EmitServices.returnValues.codes;
     let fullServices = [];
     srvc.forEach(function (item) {
@@ -84,74 +88,88 @@ const Services = props => {
     return fullServices;
   }
 
-  // function for getting all services (useful for all other roles)
-  async function emitAllServices() {
-    var resp = await contract.methods.emitAllServices().call();
-    console.log("RESPONSE:");
-    console.log(resp);
-    if (resp.length > 0){
-      let c = resp.events.EmitServices.returnValues.codes;
-      let fullServices = [];
-      c.forEach(function (item) {
-        fullServices.push(getFullServiceByCode(item.code))
-      })
+  const getAllServices = (contract) => {
+    return contract.methods.emitAllServices().call();
+  } 
   
-      console.log(fullServices);
-  
-      setData(fullServices);
-      return fullServices;
-    }
-    return resp
-  }
-
   // returns a full service object
-  async function getFullServiceByCode(code) {
-    var resp = await contract.methods["findServiceByCode"](code).call();
-    return resp.events.ServiceIsRead.returnValues;
+  function getFullServiceByCode(code, contract) {
+    return contract.methods.findServiceByCode(code).call();
+  }
+  // function for getting all services (useful for all other roles)
+  async function emitAllServices(contract) {
+    console.log("contract:");
+    console.log(contract);
+    let fullServices = [];
+    let r = await getAllServices(contract);
+    console.log("lol" + r);
+
+    await r.forEach(async (item) => {
+      let resp = await getFullServiceByCode(item, contract);
+      console.log(resp);
+      const service = {
+        code: resp.code_,
+        serviceName: resp.serviceName,
+        serviceType: resp.serviceType,
+        location: resp.location,
+        startdate: resp.startdate,
+        enddate: resp.enddate,
+        instructor: resp.instructor,
+        costs: resp.costs
+      };
+      
+      setData([...[service]]);
+    });
+
+      setLoading(false);      
+      return fullServices;
   }
 
   // creates new service
-  async function createNewService(service) {
+  async function createNewService(service, contract) {
     console.log("Create new service:");
-    console.log(
-      parseInt(service.code),
-      service.serviceType.toString(),
-      service.serviceName.toString(),
-      service.location.toString(),
-      service.startdate.getTime(),
-      service.enddate.getTime(),
-      service.instructor.toString(),
-      parseInt(service.costs)
-    );
+    // console.log(
+    //   parseInt(service.code),
+    //   service.serviceType.toString(),
+    //   service.serviceName.toString(),
+    //   service.location.toString(),
+    //   service.startdate.getTime(),
+    //   service.enddate.getTime(),
+    //   service.instructor.toString(),
+    //   parseInt(service.costs)
+    // );
     const accounts = await web3.eth.getAccounts();
     console.log(accounts[0]);
     var resp =  await contract.methods.createService(
-      2,
-      service.serviceType.toString(),
-      service.serviceName.toString(),
-      service.location.toString(),
-      1,
-      1,
-      service.instructor.toString(),
-      1
-    ).send({ from: accounts[0]});
-
+      111, "blah", "test", "blah-blah", 1580738546707, 1580738546713, "1", 1
+      // parseInt(service.code),
+      // service.serviceType.toString(),
+      // service.serviceName.toString(),
+      // service.location.toString(),
+      // service.startdate.getTime(),
+      // service.enddate.getTime(),
+      // service.instructor.toString(),
+      // parseInt(service.costs)
+    ).call({from: accounts[0]});
+    // .send({ from: accounts[0]});
+    console.log("creating service");
     console.log(resp);
     updateData();
+    getAllServices(contract);
   }
 
-  function updateData() {
+  function updateData(contract) {
     // This needs to update the list of services depending on the user role
     // if (serviceProviderRole){
-    //   getMyCourcesCodes();
+    //   getMyCourcesCodes(contract);
     // } else {
     //   emitAllServices();
     // }
   }
 
   // this should be called on edit
-  async function editService(service) {
-    var resp = await this.state.contract.methods["updateService"]({
+  async function editService(service, contract) {
+    var resp = await contract.methods["updateService"]({
       code: service.code,
       serviceType: service.serviceType,
       serviceName: service.serviceName,
@@ -161,12 +179,12 @@ const Services = props => {
       instructor: service.instructor,
       costs: service.cost
     }).call();
-    updateData();
+    updateData(contract);
   }
 
   //deleting the service
-  async function deleteService(service) {
-    var resp = await this.state.contract.methods["deleteService"]({ code: service.code }).call();
+  async function deleteService(service, contract) {
+    var resp = await contract.methods["deleteService"]({ code: service.code }).call();
     updateData();
   }
 
@@ -180,8 +198,7 @@ const Services = props => {
       { title: 'End Date', field: 'enddate', type: 'date' },
       { title: 'Instructor', field: 'instructor' },
       { title: 'Price', field: 'costs', type: 'numeric' },
-    ],
-    data: serviceData,  // I set this data above in component on mount, but it doesn't work
+    ]// I set this data above in component on mount, but it doesn't work
   });
 
   const useStyles = makeStyles(theme => ({
@@ -202,6 +219,11 @@ const Services = props => {
   }));
   const classes = useStyles();
 
+  if(isLoading) {
+    return (
+      <h1>Loading</h1>
+    );
+  }
 
   return (
     <Fragment>
@@ -212,20 +234,21 @@ const Services = props => {
             <Title title="Services" />
             <div className={classes.marginAutoContainer}>
               <div className={classes.marginAutoItem}>
-
+                {console.log(data)}
+                {data.length != 0 &&
                 <MaterialTable
                   title="My Services"
                   columns={state.columns}
-                  data={state.data}
+                  data={data}
                   editable={{
                     onRowAdd: newData =>
                       new Promise(resolve => {
                         setTimeout(() => {
                           resolve();
                           setState(prevState => {
-                            const data = [...prevState.data];
-                            data.push(newData);
-                            createNewService(newData);
+                            // const data = [...prevState.data];
+                            // data.push(newData);
+                            createNewService(newData, contract);
                             return { ...prevState, data };
                           });
                         }, 600);
@@ -256,6 +279,7 @@ const Services = props => {
                       }),
                   }}
                 />
+                }
                 <Button variant="contained" color="primary" onClick={() => history.push("/register")}>
                   Servicies
                 </Button>

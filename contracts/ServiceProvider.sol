@@ -17,7 +17,7 @@
       mapping(address => Service[]) public serviseCreator;
       mapping(uint => Service) public serviceCode;
 
-      uint[] allServices;
+      uint[] public allServices;
 
       event ServiceIsCreated(uint code, string serviceName);
       event ServiceIsUpdated(uint code, string serviceName);
@@ -45,15 +45,13 @@
          uint enddate,
          string memory instructor,
          uint256 costs
-      ) public returns(
-         uint code_
-      ){
+      ) public returns(bool){
          serviseCreator[msg.sender].push(Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs));
          serviceCode[code] = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);
-         allServices[totalServices] = code;
+         allServices.push(code);
          totalServices++;
          emit ServiceIsCreated(code, serviceName);
-         return code;
+         return true;
       }
 
       function updateService(
@@ -65,7 +63,7 @@
          uint enddate,
          string memory instructor,
          uint256 costs
-      ) public returns (bool success) {
+      ) public {
          serviseCreator[msg.sender].push(Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs));
          serviceCode[code] = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);
          for(uint256 i = 0; i < serviseCreator[msg.sender].length; i++){
@@ -81,13 +79,11 @@
                serviseCreator[msg.sender][i] = s;
                serviceCode[code] = s;
                emit ServiceIsUpdated(code, serviceName);
-               return true;
             }
          }
-         return false;
       }
 
-      function deleteService(uint code) public returns (bool success) {
+      function deleteService(uint code) public {
          require(totalServices > 0, 'No services are found');
          for(uint256 i = 0; i < serviseCreator[msg.sender].length; i++){
             if(codesEqual(code, serviseCreator[msg.sender][i].code)){
@@ -98,11 +94,9 @@
                   allServices[i] = allServices[totalServices-1];
                   totalServices--;
                   emit ServiceIsDeleted(code);
-                  return true;
                }
             }
          }
-         return false;
       }
 
       function findServiceByCode (uint code) public returns (
@@ -117,17 +111,17 @@
          uint256 costs
       ) {
          Service memory s = serviceCode[code];
-         emit ServiceIsRead(
-            s.code,
-            s.owner,
-            s.serviceType,
-            s.serviceName,
-            s.location,
-            s.startdate,
-            s.enddate,
-            s.instructor,
-            s.costs
-         );
+         // emit ServiceIsRead(
+         //    s.code,
+         //    s.owner,
+         //    s.serviceType,
+         //    s.serviceName,
+         //    s.location,
+         //    s.startdate,
+         //    s.enddate,
+         //    s.instructor,
+         //    s.costs
+         // );
          return (
             s.code,
             s.owner,
@@ -155,17 +149,17 @@
          for(uint256 i = 0; i < serviseCreator[msg.sender].length; i++){
             Service memory s = serviseCreator[msg.sender][i];
             if(nameEquals(serviceName, s.serviceName)){
-               emit ServiceIsRead(
-                  s.code,
-                  s.owner,
-                  s.serviceType,
-                  s.serviceName,
-                  s.location,
-                  s.startdate,
-                  s.enddate,
-                  s.instructor,
-                  s.costs
-               );
+               // emit ServiceIsRead(
+               //    s.code,
+               //    s.owner,
+               //    s.serviceType,
+               //    s.serviceName,
+               //    s.location,
+               //    s.startdate,
+               //    s.enddate,
+               //    s.instructor,
+               //    s.costs
+               // );
                return (
                   s.code,
                   s.owner,

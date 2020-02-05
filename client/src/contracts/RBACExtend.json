@@ -87,14 +87,14 @@
     "absolutePath": "/C/Users/prush/Documents/git/Dapp/contracts/access-control/RBACExtend.sol",
     "exportedSymbols": {
       "RBACExtend": [
-        1588
+        1534
       ]
     },
-    "id": 1589,
+    "id": 1535,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1481,
+        "id": 1427,
         "literals": [
           "solidity",
           "^",
@@ -107,10 +107,10 @@
       {
         "absolutePath": "/C/Users/prush/Documents/git/Dapp/contracts/access-control/RBAC.sol",
         "file": "./RBAC.sol",
-        "id": 1482,
+        "id": 1428,
         "nodeType": "ImportDirective",
-        "scope": 1589,
-        "sourceUnit": 1480,
+        "scope": 1535,
+        "sourceUnit": 1426,
         "src": "26:20:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -118,40 +118,40 @@
       {
         "baseContracts": [],
         "contractDependencies": [
-          1479
+          1425
         ],
         "contractKind": "contract",
         "documentation": "@title RBACExtend\n @author Djamaile Rahamat\n @dev functions build upon the RBAC",
         "fullyImplemented": true,
-        "id": 1588,
+        "id": 1534,
         "linearizedBaseContracts": [
-          1588
+          1534
         ],
         "name": "RBACExtend",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1484,
+            "id": 1430,
             "name": "roles",
             "nodeType": "VariableDeclaration",
-            "scope": 1588,
+            "scope": 1534,
             "src": "168:19:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_RBAC_$1479",
+              "typeIdentifier": "t_contract$_RBAC_$1425",
               "typeString": "contract RBAC"
             },
             "typeName": {
               "contractScope": null,
-              "id": 1483,
+              "id": 1429,
               "name": "RBAC",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1479,
+              "referencedDeclaration": 1425,
               "src": "168:4:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_RBAC_$1479",
+                "typeIdentifier": "t_contract$_RBAC_$1425",
                 "typeString": "contract RBAC"
               }
             },
@@ -160,28 +160,28 @@
           },
           {
             "body": {
-              "id": 1528,
+              "id": 1474,
               "nodeType": "Block",
               "src": "216:270:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1493,
+                    "id": 1439,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1487,
+                      "id": 1433,
                       "name": "roles",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1484,
+                      "referencedDeclaration": 1430,
                       "src": "223:5:5",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_RBAC_$1479",
+                        "typeIdentifier": "t_contract$_RBAC_$1425",
                         "typeString": "contract RBAC"
                       }
                     },
@@ -194,18 +194,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1490,
+                            "id": 1436,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2291,
+                            "referencedDeclaration": 2237,
                             "src": "240:3:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 1491,
+                          "id": 1437,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -227,7 +227,7 @@
                             "typeString": "address payable"
                           }
                         ],
-                        "id": 1489,
+                        "id": 1435,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -235,23 +235,23 @@
                         "nodeType": "NewExpression",
                         "src": "231:8:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_function_creation_nonpayable$_t_address_$returns$_t_contract$_RBAC_$1479_$",
+                          "typeIdentifier": "t_function_creation_nonpayable$_t_address_$returns$_t_contract$_RBAC_$1425_$",
                           "typeString": "function (address) returns (contract RBAC)"
                         },
                         "typeName": {
                           "contractScope": null,
-                          "id": 1488,
+                          "id": 1434,
                           "name": "RBAC",
                           "nodeType": "UserDefinedTypeName",
-                          "referencedDeclaration": 1479,
+                          "referencedDeclaration": 1425,
                           "src": "235:4:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_RBAC_$1479",
+                            "typeIdentifier": "t_contract$_RBAC_$1425",
                             "typeString": "contract RBAC"
                           }
                         }
                       },
-                      "id": 1492,
+                      "id": 1438,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -261,17 +261,17 @@
                       "nodeType": "FunctionCall",
                       "src": "231:20:5",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_RBAC_$1479",
+                        "typeIdentifier": "t_contract$_RBAC_$1425",
                         "typeString": "contract RBAC"
                       }
                     },
                     "src": "223:28:5",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_RBAC_$1479",
+                      "typeIdentifier": "t_contract$_RBAC_$1425",
                       "typeString": "contract RBAC"
                     }
                   },
-                  "id": 1494,
+                  "id": 1440,
                   "nodeType": "ExpressionStatement",
                   "src": "223:28:5"
                 },
@@ -285,7 +285,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "636f6c6c6563746f72",
-                            "id": 1499,
+                            "id": 1445,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -308,18 +308,18 @@
                               "typeString": "literal_string \"collector\""
                             }
                           ],
-                          "id": 1498,
+                          "id": 1444,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "272:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1500,
+                        "id": 1446,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -339,7 +339,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "524f4f54",
-                            "id": 1502,
+                            "id": 1448,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -362,18 +362,18 @@
                               "typeString": "literal_string \"ROOT\""
                             }
                           ],
-                          "id": 1501,
+                          "id": 1447,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "302:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1503,
+                        "id": 1449,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -401,32 +401,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1495,
+                        "id": 1441,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "258:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1497,
+                      "id": 1443,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addRole",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1388,
+                      "referencedDeclaration": 1334,
                       "src": "258:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_bytes32_$_t_bytes32_$returns$__$",
                         "typeString": "function (bytes32,bytes32) external"
                       }
                     },
-                    "id": 1504,
+                    "id": 1450,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -440,7 +440,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1505,
+                  "id": 1451,
                   "nodeType": "ExpressionStatement",
                   "src": "258:68:5"
                 },
@@ -454,7 +454,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "756e6976657273697479",
-                            "id": 1510,
+                            "id": 1456,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -477,18 +477,18 @@
                               "typeString": "literal_string \"university\""
                             }
                           ],
-                          "id": 1509,
+                          "id": 1455,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "347:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1511,
+                        "id": 1457,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -508,7 +508,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "524f4f54",
-                            "id": 1513,
+                            "id": 1459,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -531,18 +531,18 @@
                               "typeString": "literal_string \"ROOT\""
                             }
                           ],
-                          "id": 1512,
+                          "id": 1458,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "378:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1514,
+                        "id": 1460,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -570,32 +570,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1506,
+                        "id": 1452,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "333:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1508,
+                      "id": 1454,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addRole",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1388,
+                      "referencedDeclaration": 1334,
                       "src": "333:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_bytes32_$_t_bytes32_$returns$__$",
                         "typeString": "function (bytes32,bytes32) external"
                       }
                     },
-                    "id": 1515,
+                    "id": 1461,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -609,7 +609,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1516,
+                  "id": 1462,
                   "nodeType": "ExpressionStatement",
                   "src": "333:69:5"
                 },
@@ -623,7 +623,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "72656379636c65506c616e74",
-                            "id": 1521,
+                            "id": 1467,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -646,18 +646,18 @@
                               "typeString": "literal_string \"recyclePlant\""
                             }
                           ],
-                          "id": 1520,
+                          "id": 1466,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "423:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1522,
+                        "id": 1468,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -677,7 +677,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "524f4f54",
-                            "id": 1524,
+                            "id": 1470,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -700,18 +700,18 @@
                               "typeString": "literal_string \"ROOT\""
                             }
                           ],
-                          "id": 1523,
+                          "id": 1469,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "456:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1525,
+                        "id": 1471,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -739,32 +739,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1517,
+                        "id": 1463,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "409:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1519,
+                      "id": 1465,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addRole",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1388,
+                      "referencedDeclaration": 1334,
                       "src": "409:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_bytes32_$_t_bytes32_$returns$__$",
                         "typeString": "function (bytes32,bytes32) external"
                       }
                     },
-                    "id": 1526,
+                    "id": 1472,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -778,32 +778,32 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1527,
+                  "id": 1473,
                   "nodeType": "ExpressionStatement",
                   "src": "409:71:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 1529,
+            "id": 1475,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1485,
+              "id": 1431,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "207:2:5"
             },
             "returnParameters": {
-              "id": 1486,
+              "id": 1432,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "216:0:5"
             },
-            "scope": 1588,
+            "scope": 1534,
             "src": "196:290:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -811,7 +811,7 @@
           },
           {
             "body": {
-              "id": 1545,
+              "id": 1491,
               "nodeType": "Block",
               "src": "749:70:5",
               "statements": [
@@ -823,18 +823,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1538,
+                          "id": 1484,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2291,
+                          "referencedDeclaration": 2237,
                           "src": "777:3:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1539,
+                        "id": 1485,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -853,11 +853,11 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 1541,
+                            "id": 1487,
                             "name": "roleId",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1531,
+                            "referencedDeclaration": 1477,
                             "src": "805:6:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
@@ -872,18 +872,18 @@
                               "typeString": "string memory"
                             }
                           ],
-                          "id": 1540,
+                          "id": 1486,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "789:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1542,
+                        "id": 1488,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -911,32 +911,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1536,
+                        "id": 1482,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "763:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1537,
+                      "id": 1483,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "hasRole",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1352,
+                      "referencedDeclaration": 1298,
                       "src": "763:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_bytes32_$returns$_t_bool_$",
                         "typeString": "function (address,bytes32) view external returns (bool)"
                       }
                     },
-                    "id": 1543,
+                    "id": 1489,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -950,30 +950,30 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1535,
-                  "id": 1544,
+                  "functionReturnParameters": 1481,
+                  "id": 1490,
                   "nodeType": "Return",
                   "src": "756:57:5"
                 }
               ]
             },
             "documentation": "@notice A method that checks if the contract has this role. This is mostly for debugging reasons. \n@param roleId The role that we want to check if it exists",
-            "id": 1546,
+            "id": 1492,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "userHasRole",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1532,
+              "id": 1478,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1531,
+                  "id": 1477,
                   "name": "roleId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1546,
+                  "scope": 1492,
                   "src": "701:20:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -982,7 +982,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1530,
+                    "id": 1476,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "701:6:5",
@@ -998,15 +998,15 @@
               "src": "700:22:5"
             },
             "returnParameters": {
-              "id": 1535,
+              "id": 1481,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1534,
+                  "id": 1480,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1546,
+                  "scope": 1492,
                   "src": "744:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1015,7 +1015,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1533,
+                    "id": 1479,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "744:4:5",
@@ -1030,7 +1030,7 @@
               ],
               "src": "743:6:5"
             },
-            "scope": 1588,
+            "scope": 1534,
             "src": "680:139:5",
             "stateMutability": "view",
             "superFunction": null,
@@ -1038,7 +1038,7 @@
           },
           {
             "body": {
-              "id": 1563,
+              "id": 1509,
               "nodeType": "Block",
               "src": "1179:66:5",
               "statements": [
@@ -1048,11 +1048,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1557,
+                        "id": 1503,
                         "name": "user",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1548,
+                        "referencedDeclaration": 1494,
                         "src": "1209:4:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -1064,11 +1064,11 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 1559,
+                            "id": 1505,
                             "name": "roleId",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1550,
+                            "referencedDeclaration": 1496,
                             "src": "1231:6:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
@@ -1083,18 +1083,18 @@
                               "typeString": "string memory"
                             }
                           ],
-                          "id": 1558,
+                          "id": 1504,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "1215:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1560,
+                        "id": 1506,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1122,32 +1122,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1555,
+                        "id": 1501,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "1193:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1556,
+                      "id": 1502,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addMember",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1430,
+                      "referencedDeclaration": 1376,
                       "src": "1193:15:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_bytes32_$returns$_t_bool_$",
                         "typeString": "function (address,bytes32) external returns (bool)"
                       }
                     },
-                    "id": 1561,
+                    "id": 1507,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1161,30 +1161,30 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1554,
-                  "id": 1562,
+                  "functionReturnParameters": 1500,
+                  "id": 1508,
                   "nodeType": "Return",
                   "src": "1186:53:5"
                 }
               ]
             },
             "documentation": "@notice A method that adds users to a specific role. This function is mostly for the front-end to register universities & plastic recycle plants.  \n@param user address of the user \n@param roleId role to which user going to be added to ",
-            "id": 1564,
+            "id": 1510,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addUserToRole",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1551,
+              "id": 1497,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1548,
+                  "id": 1494,
                   "name": "user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1564,
+                  "scope": 1510,
                   "src": "1122:12:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1193,7 +1193,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1547,
+                    "id": 1493,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1122:7:5",
@@ -1208,10 +1208,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1550,
+                  "id": 1496,
                   "name": "roleId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1564,
+                  "scope": 1510,
                   "src": "1136:20:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1220,7 +1220,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1549,
+                    "id": 1495,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1136:6:5",
@@ -1236,15 +1236,15 @@
               "src": "1121:36:5"
             },
             "returnParameters": {
-              "id": 1554,
+              "id": 1500,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1553,
+                  "id": 1499,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1564,
+                  "scope": 1510,
                   "src": "1173:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1253,7 +1253,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1552,
+                    "id": 1498,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1173:4:5",
@@ -1268,7 +1268,7 @@
               ],
               "src": "1172:6:5"
             },
-            "scope": 1588,
+            "scope": 1534,
             "src": "1099:146:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1276,21 +1276,21 @@
           },
           {
             "body": {
-              "id": 1586,
+              "id": 1532,
               "nodeType": "Block",
               "src": "1510:202:5",
               "statements": [
                 {
                   "assignments": [
-                    1572
+                    1518
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1572,
+                      "id": 1518,
                       "name": "tempEmptyStringTest",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1586,
+                      "scope": 1532,
                       "src": "1517:32:5",
                       "stateVariable": false,
                       "storageLocation": "memory",
@@ -1299,7 +1299,7 @@
                         "typeString": "bytes"
                       },
                       "typeName": {
-                        "id": 1571,
+                        "id": 1517,
                         "name": "bytes",
                         "nodeType": "ElementaryTypeName",
                         "src": "1517:5:5",
@@ -1312,17 +1312,17 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1576,
+                  "id": 1522,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1574,
+                        "id": 1520,
                         "name": "source",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1566,
+                        "referencedDeclaration": 1512,
                         "src": "1558:6:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -1337,7 +1337,7 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 1573,
+                      "id": 1519,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1350,7 +1350,7 @@
                       },
                       "typeName": "bytes"
                     },
-                    "id": 1575,
+                    "id": 1521,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1374,7 +1374,7 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1580,
+                    "id": 1526,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1383,18 +1383,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1577,
+                        "id": 1523,
                         "name": "tempEmptyStringTest",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1572,
+                        "referencedDeclaration": 1518,
                         "src": "1576:19:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
                           "typeString": "bytes memory"
                         }
                       },
-                      "id": 1578,
+                      "id": 1524,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1413,7 +1413,7 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 1579,
+                      "id": 1525,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1435,11 +1435,11 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1584,
+                  "id": 1530,
                   "nodeType": "IfStatement",
                   "src": "1572:64:5",
                   "trueBody": {
-                    "id": 1583,
+                    "id": 1529,
                     "nodeType": "Block",
                     "src": "1609:27:5",
                     "statements": [
@@ -1447,7 +1447,7 @@
                         "expression": {
                           "argumentTypes": null,
                           "hexValue": "307830",
-                          "id": 1581,
+                          "id": 1527,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1462,8 +1462,8 @@
                           },
                           "value": "0x0"
                         },
-                        "functionReturnParameters": 1570,
-                        "id": 1582,
+                        "functionReturnParameters": 1516,
+                        "id": 1528,
                         "nodeType": "Return",
                         "src": "1618:10:5"
                       }
@@ -1474,7 +1474,7 @@
                   "externalReferences": [
                     {
                       "result": {
-                        "declaration": 1569,
+                        "declaration": 1515,
                         "isOffset": false,
                         "isSlot": false,
                         "src": "1668:6:5",
@@ -1483,7 +1483,7 @@
                     },
                     {
                       "source": {
-                        "declaration": 1566,
+                        "declaration": 1512,
                         "isOffset": false,
                         "isSlot": false,
                         "src": "1688:6:5",
@@ -1491,7 +1491,7 @@
                       }
                     }
                   ],
-                  "id": 1585,
+                  "id": 1531,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    result := mload(add(source, 32))\n}",
                   "src": "1650:57:5"
@@ -1499,22 +1499,22 @@
               ]
             },
             "documentation": "@notice A method that convert strings to bytes32. RBAC only accepts bytes32 inputs\n@param source string that is going to be converted to a byte32",
-            "id": 1587,
+            "id": 1533,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "stringToBytes32",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1567,
+              "id": 1513,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1566,
+                  "id": 1512,
                   "name": "source",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1587,
+                  "scope": 1533,
                   "src": "1451:20:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1523,7 +1523,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1565,
+                    "id": 1511,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1451:6:5",
@@ -1539,15 +1539,15 @@
               "src": "1450:22:5"
             },
             "returnParameters": {
-              "id": 1570,
+              "id": 1516,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1569,
+                  "id": 1515,
                   "name": "result",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1587,
+                  "scope": 1533,
                   "src": "1494:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1556,7 +1556,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1568,
+                    "id": 1514,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1494:7:5",
@@ -1571,14 +1571,14 @@
               ],
               "src": "1493:16:5"
             },
-            "scope": 1588,
+            "scope": 1534,
             "src": "1426:286:5",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1589,
+        "scope": 1535,
         "src": "143:1572:5"
       }
     ],
@@ -1588,14 +1588,14 @@
     "absolutePath": "/C/Users/prush/Documents/git/Dapp/contracts/access-control/RBACExtend.sol",
     "exportedSymbols": {
       "RBACExtend": [
-        1588
+        1534
       ]
     },
-    "id": 1589,
+    "id": 1535,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1481,
+        "id": 1427,
         "literals": [
           "solidity",
           "^",
@@ -1608,10 +1608,10 @@
       {
         "absolutePath": "/C/Users/prush/Documents/git/Dapp/contracts/access-control/RBAC.sol",
         "file": "./RBAC.sol",
-        "id": 1482,
+        "id": 1428,
         "nodeType": "ImportDirective",
-        "scope": 1589,
-        "sourceUnit": 1480,
+        "scope": 1535,
+        "sourceUnit": 1426,
         "src": "26:20:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1619,40 +1619,40 @@
       {
         "baseContracts": [],
         "contractDependencies": [
-          1479
+          1425
         ],
         "contractKind": "contract",
         "documentation": "@title RBACExtend\n @author Djamaile Rahamat\n @dev functions build upon the RBAC",
         "fullyImplemented": true,
-        "id": 1588,
+        "id": 1534,
         "linearizedBaseContracts": [
-          1588
+          1534
         ],
         "name": "RBACExtend",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1484,
+            "id": 1430,
             "name": "roles",
             "nodeType": "VariableDeclaration",
-            "scope": 1588,
+            "scope": 1534,
             "src": "168:19:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_RBAC_$1479",
+              "typeIdentifier": "t_contract$_RBAC_$1425",
               "typeString": "contract RBAC"
             },
             "typeName": {
               "contractScope": null,
-              "id": 1483,
+              "id": 1429,
               "name": "RBAC",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1479,
+              "referencedDeclaration": 1425,
               "src": "168:4:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_RBAC_$1479",
+                "typeIdentifier": "t_contract$_RBAC_$1425",
                 "typeString": "contract RBAC"
               }
             },
@@ -1661,28 +1661,28 @@
           },
           {
             "body": {
-              "id": 1528,
+              "id": 1474,
               "nodeType": "Block",
               "src": "216:270:5",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 1493,
+                    "id": 1439,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 1487,
+                      "id": 1433,
                       "name": "roles",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 1484,
+                      "referencedDeclaration": 1430,
                       "src": "223:5:5",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_RBAC_$1479",
+                        "typeIdentifier": "t_contract$_RBAC_$1425",
                         "typeString": "contract RBAC"
                       }
                     },
@@ -1695,18 +1695,18 @@
                           "argumentTypes": null,
                           "expression": {
                             "argumentTypes": null,
-                            "id": 1490,
+                            "id": 1436,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2291,
+                            "referencedDeclaration": 2237,
                             "src": "240:3:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
                               "typeString": "msg"
                             }
                           },
-                          "id": 1491,
+                          "id": 1437,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1728,7 +1728,7 @@
                             "typeString": "address payable"
                           }
                         ],
-                        "id": 1489,
+                        "id": 1435,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1736,23 +1736,23 @@
                         "nodeType": "NewExpression",
                         "src": "231:8:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_function_creation_nonpayable$_t_address_$returns$_t_contract$_RBAC_$1479_$",
+                          "typeIdentifier": "t_function_creation_nonpayable$_t_address_$returns$_t_contract$_RBAC_$1425_$",
                           "typeString": "function (address) returns (contract RBAC)"
                         },
                         "typeName": {
                           "contractScope": null,
-                          "id": 1488,
+                          "id": 1434,
                           "name": "RBAC",
                           "nodeType": "UserDefinedTypeName",
-                          "referencedDeclaration": 1479,
+                          "referencedDeclaration": 1425,
                           "src": "235:4:5",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_RBAC_$1479",
+                            "typeIdentifier": "t_contract$_RBAC_$1425",
                             "typeString": "contract RBAC"
                           }
                         }
                       },
-                      "id": 1492,
+                      "id": 1438,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1762,17 +1762,17 @@
                       "nodeType": "FunctionCall",
                       "src": "231:20:5",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_RBAC_$1479",
+                        "typeIdentifier": "t_contract$_RBAC_$1425",
                         "typeString": "contract RBAC"
                       }
                     },
                     "src": "223:28:5",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_RBAC_$1479",
+                      "typeIdentifier": "t_contract$_RBAC_$1425",
                       "typeString": "contract RBAC"
                     }
                   },
-                  "id": 1494,
+                  "id": 1440,
                   "nodeType": "ExpressionStatement",
                   "src": "223:28:5"
                 },
@@ -1786,7 +1786,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "636f6c6c6563746f72",
-                            "id": 1499,
+                            "id": 1445,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1809,18 +1809,18 @@
                               "typeString": "literal_string \"collector\""
                             }
                           ],
-                          "id": 1498,
+                          "id": 1444,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "272:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1500,
+                        "id": 1446,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1840,7 +1840,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "524f4f54",
-                            "id": 1502,
+                            "id": 1448,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1863,18 +1863,18 @@
                               "typeString": "literal_string \"ROOT\""
                             }
                           ],
-                          "id": 1501,
+                          "id": 1447,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "302:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1503,
+                        "id": 1449,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1902,32 +1902,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1495,
+                        "id": 1441,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "258:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1497,
+                      "id": 1443,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addRole",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1388,
+                      "referencedDeclaration": 1334,
                       "src": "258:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_bytes32_$_t_bytes32_$returns$__$",
                         "typeString": "function (bytes32,bytes32) external"
                       }
                     },
-                    "id": 1504,
+                    "id": 1450,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1941,7 +1941,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1505,
+                  "id": 1451,
                   "nodeType": "ExpressionStatement",
                   "src": "258:68:5"
                 },
@@ -1955,7 +1955,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "756e6976657273697479",
-                            "id": 1510,
+                            "id": 1456,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1978,18 +1978,18 @@
                               "typeString": "literal_string \"university\""
                             }
                           ],
-                          "id": 1509,
+                          "id": 1455,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "347:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1511,
+                        "id": 1457,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2009,7 +2009,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "524f4f54",
-                            "id": 1513,
+                            "id": 1459,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -2032,18 +2032,18 @@
                               "typeString": "literal_string \"ROOT\""
                             }
                           ],
-                          "id": 1512,
+                          "id": 1458,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "378:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1514,
+                        "id": 1460,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2071,32 +2071,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1506,
+                        "id": 1452,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "333:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1508,
+                      "id": 1454,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addRole",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1388,
+                      "referencedDeclaration": 1334,
                       "src": "333:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_bytes32_$_t_bytes32_$returns$__$",
                         "typeString": "function (bytes32,bytes32) external"
                       }
                     },
-                    "id": 1515,
+                    "id": 1461,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2110,7 +2110,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1516,
+                  "id": 1462,
                   "nodeType": "ExpressionStatement",
                   "src": "333:69:5"
                 },
@@ -2124,7 +2124,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "72656379636c65506c616e74",
-                            "id": 1521,
+                            "id": 1467,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -2147,18 +2147,18 @@
                               "typeString": "literal_string \"recyclePlant\""
                             }
                           ],
-                          "id": 1520,
+                          "id": 1466,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "423:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1522,
+                        "id": 1468,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2178,7 +2178,7 @@
                           {
                             "argumentTypes": null,
                             "hexValue": "524f4f54",
-                            "id": 1524,
+                            "id": 1470,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -2201,18 +2201,18 @@
                               "typeString": "literal_string \"ROOT\""
                             }
                           ],
-                          "id": 1523,
+                          "id": 1469,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "456:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1525,
+                        "id": 1471,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2240,32 +2240,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1517,
+                        "id": 1463,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "409:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1519,
+                      "id": 1465,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addRole",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1388,
+                      "referencedDeclaration": 1334,
                       "src": "409:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_bytes32_$_t_bytes32_$returns$__$",
                         "typeString": "function (bytes32,bytes32) external"
                       }
                     },
-                    "id": 1526,
+                    "id": 1472,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2279,32 +2279,32 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1527,
+                  "id": 1473,
                   "nodeType": "ExpressionStatement",
                   "src": "409:71:5"
                 }
               ]
             },
             "documentation": null,
-            "id": 1529,
+            "id": 1475,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1485,
+              "id": 1431,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "207:2:5"
             },
             "returnParameters": {
-              "id": 1486,
+              "id": 1432,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "216:0:5"
             },
-            "scope": 1588,
+            "scope": 1534,
             "src": "196:290:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2312,7 +2312,7 @@
           },
           {
             "body": {
-              "id": 1545,
+              "id": 1491,
               "nodeType": "Block",
               "src": "749:70:5",
               "statements": [
@@ -2324,18 +2324,18 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 1538,
+                          "id": 1484,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2291,
+                          "referencedDeclaration": 2237,
                           "src": "777:3:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
                             "typeString": "msg"
                           }
                         },
-                        "id": 1539,
+                        "id": 1485,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2354,11 +2354,11 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 1541,
+                            "id": 1487,
                             "name": "roleId",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1531,
+                            "referencedDeclaration": 1477,
                             "src": "805:6:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
@@ -2373,18 +2373,18 @@
                               "typeString": "string memory"
                             }
                           ],
-                          "id": 1540,
+                          "id": 1486,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "789:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1542,
+                        "id": 1488,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2412,32 +2412,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1536,
+                        "id": 1482,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "763:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1537,
+                      "id": 1483,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "hasRole",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1352,
+                      "referencedDeclaration": 1298,
                       "src": "763:13:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$_t_address_$_t_bytes32_$returns$_t_bool_$",
                         "typeString": "function (address,bytes32) view external returns (bool)"
                       }
                     },
-                    "id": 1543,
+                    "id": 1489,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2451,30 +2451,30 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1535,
-                  "id": 1544,
+                  "functionReturnParameters": 1481,
+                  "id": 1490,
                   "nodeType": "Return",
                   "src": "756:57:5"
                 }
               ]
             },
             "documentation": "@notice A method that checks if the contract has this role. This is mostly for debugging reasons. \n@param roleId The role that we want to check if it exists",
-            "id": 1546,
+            "id": 1492,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "userHasRole",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1532,
+              "id": 1478,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1531,
+                  "id": 1477,
                   "name": "roleId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1546,
+                  "scope": 1492,
                   "src": "701:20:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2483,7 +2483,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1530,
+                    "id": 1476,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "701:6:5",
@@ -2499,15 +2499,15 @@
               "src": "700:22:5"
             },
             "returnParameters": {
-              "id": 1535,
+              "id": 1481,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1534,
+                  "id": 1480,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1546,
+                  "scope": 1492,
                   "src": "744:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2516,7 +2516,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1533,
+                    "id": 1479,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "744:4:5",
@@ -2531,7 +2531,7 @@
               ],
               "src": "743:6:5"
             },
-            "scope": 1588,
+            "scope": 1534,
             "src": "680:139:5",
             "stateMutability": "view",
             "superFunction": null,
@@ -2539,7 +2539,7 @@
           },
           {
             "body": {
-              "id": 1563,
+              "id": 1509,
               "nodeType": "Block",
               "src": "1179:66:5",
               "statements": [
@@ -2549,11 +2549,11 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1557,
+                        "id": 1503,
                         "name": "user",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1548,
+                        "referencedDeclaration": 1494,
                         "src": "1209:4:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -2565,11 +2565,11 @@
                         "arguments": [
                           {
                             "argumentTypes": null,
-                            "id": 1559,
+                            "id": 1505,
                             "name": "roleId",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1550,
+                            "referencedDeclaration": 1496,
                             "src": "1231:6:5",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
@@ -2584,18 +2584,18 @@
                               "typeString": "string memory"
                             }
                           ],
-                          "id": 1558,
+                          "id": 1504,
                           "name": "stringToBytes32",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1587,
+                          "referencedDeclaration": 1533,
                           "src": "1215:15:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_pure$_t_string_memory_ptr_$returns$_t_bytes32_$",
                             "typeString": "function (string memory) pure returns (bytes32)"
                           }
                         },
-                        "id": 1560,
+                        "id": 1506,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -2623,32 +2623,32 @@
                       ],
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1555,
+                        "id": 1501,
                         "name": "roles",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1484,
+                        "referencedDeclaration": 1430,
                         "src": "1193:5:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_RBAC_$1479",
+                          "typeIdentifier": "t_contract$_RBAC_$1425",
                           "typeString": "contract RBAC"
                         }
                       },
-                      "id": 1556,
+                      "id": 1502,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "addMember",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 1430,
+                      "referencedDeclaration": 1376,
                       "src": "1193:15:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_bytes32_$returns$_t_bool_$",
                         "typeString": "function (address,bytes32) external returns (bool)"
                       }
                     },
-                    "id": 1561,
+                    "id": 1507,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2662,30 +2662,30 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 1554,
-                  "id": 1562,
+                  "functionReturnParameters": 1500,
+                  "id": 1508,
                   "nodeType": "Return",
                   "src": "1186:53:5"
                 }
               ]
             },
             "documentation": "@notice A method that adds users to a specific role. This function is mostly for the front-end to register universities & plastic recycle plants.  \n@param user address of the user \n@param roleId role to which user going to be added to ",
-            "id": 1564,
+            "id": 1510,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "addUserToRole",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1551,
+              "id": 1497,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1548,
+                  "id": 1494,
                   "name": "user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1564,
+                  "scope": 1510,
                   "src": "1122:12:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2694,7 +2694,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1547,
+                    "id": 1493,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1122:7:5",
@@ -2709,10 +2709,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1550,
+                  "id": 1496,
                   "name": "roleId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1564,
+                  "scope": 1510,
                   "src": "1136:20:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2721,7 +2721,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1549,
+                    "id": 1495,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1136:6:5",
@@ -2737,15 +2737,15 @@
               "src": "1121:36:5"
             },
             "returnParameters": {
-              "id": 1554,
+              "id": 1500,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1553,
+                  "id": 1499,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1564,
+                  "scope": 1510,
                   "src": "1173:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2754,7 +2754,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 1552,
+                    "id": 1498,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1173:4:5",
@@ -2769,7 +2769,7 @@
               ],
               "src": "1172:6:5"
             },
-            "scope": 1588,
+            "scope": 1534,
             "src": "1099:146:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2777,21 +2777,21 @@
           },
           {
             "body": {
-              "id": 1586,
+              "id": 1532,
               "nodeType": "Block",
               "src": "1510:202:5",
               "statements": [
                 {
                   "assignments": [
-                    1572
+                    1518
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 1572,
+                      "id": 1518,
                       "name": "tempEmptyStringTest",
                       "nodeType": "VariableDeclaration",
-                      "scope": 1586,
+                      "scope": 1532,
                       "src": "1517:32:5",
                       "stateVariable": false,
                       "storageLocation": "memory",
@@ -2800,7 +2800,7 @@
                         "typeString": "bytes"
                       },
                       "typeName": {
-                        "id": 1571,
+                        "id": 1517,
                         "name": "bytes",
                         "nodeType": "ElementaryTypeName",
                         "src": "1517:5:5",
@@ -2813,17 +2813,17 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 1576,
+                  "id": 1522,
                   "initialValue": {
                     "argumentTypes": null,
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1574,
+                        "id": 1520,
                         "name": "source",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1566,
+                        "referencedDeclaration": 1512,
                         "src": "1558:6:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -2838,7 +2838,7 @@
                           "typeString": "string memory"
                         }
                       ],
-                      "id": 1573,
+                      "id": 1519,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2851,7 +2851,7 @@
                       },
                       "typeName": "bytes"
                     },
-                    "id": 1575,
+                    "id": 1521,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2875,7 +2875,7 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 1580,
+                    "id": 1526,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2884,18 +2884,18 @@
                       "argumentTypes": null,
                       "expression": {
                         "argumentTypes": null,
-                        "id": 1577,
+                        "id": 1523,
                         "name": "tempEmptyStringTest",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 1572,
+                        "referencedDeclaration": 1518,
                         "src": "1576:19:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
                           "typeString": "bytes memory"
                         }
                       },
-                      "id": 1578,
+                      "id": 1524,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2914,7 +2914,7 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 1579,
+                      "id": 1525,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2936,11 +2936,11 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 1584,
+                  "id": 1530,
                   "nodeType": "IfStatement",
                   "src": "1572:64:5",
                   "trueBody": {
-                    "id": 1583,
+                    "id": 1529,
                     "nodeType": "Block",
                     "src": "1609:27:5",
                     "statements": [
@@ -2948,7 +2948,7 @@
                         "expression": {
                           "argumentTypes": null,
                           "hexValue": "307830",
-                          "id": 1581,
+                          "id": 1527,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2963,8 +2963,8 @@
                           },
                           "value": "0x0"
                         },
-                        "functionReturnParameters": 1570,
-                        "id": 1582,
+                        "functionReturnParameters": 1516,
+                        "id": 1528,
                         "nodeType": "Return",
                         "src": "1618:10:5"
                       }
@@ -2975,7 +2975,7 @@
                   "externalReferences": [
                     {
                       "result": {
-                        "declaration": 1569,
+                        "declaration": 1515,
                         "isOffset": false,
                         "isSlot": false,
                         "src": "1668:6:5",
@@ -2984,7 +2984,7 @@
                     },
                     {
                       "source": {
-                        "declaration": 1566,
+                        "declaration": 1512,
                         "isOffset": false,
                         "isSlot": false,
                         "src": "1688:6:5",
@@ -2992,7 +2992,7 @@
                       }
                     }
                   ],
-                  "id": 1585,
+                  "id": 1531,
                   "nodeType": "InlineAssembly",
                   "operations": "{\n    result := mload(add(source, 32))\n}",
                   "src": "1650:57:5"
@@ -3000,22 +3000,22 @@
               ]
             },
             "documentation": "@notice A method that convert strings to bytes32. RBAC only accepts bytes32 inputs\n@param source string that is going to be converted to a byte32",
-            "id": 1587,
+            "id": 1533,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "stringToBytes32",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1567,
+              "id": 1513,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1566,
+                  "id": 1512,
                   "name": "source",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1587,
+                  "scope": 1533,
                   "src": "1451:20:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -3024,7 +3024,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 1565,
+                    "id": 1511,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1451:6:5",
@@ -3040,15 +3040,15 @@
               "src": "1450:22:5"
             },
             "returnParameters": {
-              "id": 1570,
+              "id": 1516,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1569,
+                  "id": 1515,
                   "name": "result",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1587,
+                  "scope": 1533,
                   "src": "1494:14:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3057,7 +3057,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 1568,
+                    "id": 1514,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1494:7:5",
@@ -3072,14 +3072,14 @@
               ],
               "src": "1493:16:5"
             },
-            "scope": 1588,
+            "scope": 1534,
             "src": "1426:286:5",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1589,
+        "scope": 1535,
         "src": "143:1572:5"
       }
     ],
@@ -3093,12 +3093,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x56Bd0687F32F8e9DA42ecfbC89d70E59e69F4B29",
-      "transactionHash": "0xb79749916b716aed1381d047e182ebd962f0fad9235077cfd31621f25b6eaadb"
+      "address": "0x73B8BCBCBF96107fFA99eF4e495C4dB1687bF52E",
+      "transactionHash": "0xb50b75b5ea243a0969981c3107d8905870884b1e2724a19711ff487ef8858bed"
     }
   },
   "schemaVersion": "3.0.21",
-  "updatedAt": "2020-02-03T12:23:08.785Z",
+  "updatedAt": "2020-02-05T13:31:01.747Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Djamaile Rahamat",
