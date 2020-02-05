@@ -20,20 +20,23 @@ const Services = props => {
   const [contract, setContract] = React.useState("");
   const [data, setData] = React.useState([]);
   const [global, setGlobal] = useGlobal();
+  let accounts = [];
+  let fullServices = [];
 
   const loadContract = async (web3) => {
     try {
       const networkId = await web3.eth.net.getId();
+     
       const deployedServiceProvider = ServiceProvider.networks[networkId];
       const instance = new web3.eth.Contract(
         ServiceProvider.abi,
         deployedServiceProvider && deployedServiceProvider.address,
       );
-
+      accounts = await web3.eth.getAccounts();
       setContract(instance);
       emitAllServices(instance);
+     
       console.log("Contract is set");
-      console.log(instance);
       return instance;
     } catch (error) {
       alert(
@@ -50,32 +53,7 @@ const Services = props => {
       loadContract(web3);
     }
 
-    console.log(data);
   }, [web3, data]);
-
-  // mockup data, should be removed
-  // const serviceData = [
-  //   {
-  //     code: 123,
-  //     serviceName: "Frozen 2",
-  //     serviceType: "Movie ticket",
-  //     location: "Accra",
-  //     startdate: "1",
-  //     enddate: "2",
-  //     instructor: "Kristina Prusinskaite",
-  //     costs: "1",
-  //   },
-  //   {
-  //     code: 234,
-  //     serviceName: "Blockchain Minor",
-  //     serviceType: "Education course",
-  //     location: "Accra",
-  //     startdate: "1",
-  //     enddate: "2",
-  //     instructor: "Kristina Prusinskaite",
-  //     costs: "5",
-  //   }
-  // ];
 
   // gets cources that were created by the current user, should be available only for service provider
   async function getMyCourcesCodes(contract) {
@@ -84,12 +62,21 @@ const Services = props => {
     let fullServices = [];
     srvc.forEach(function (item) {
       fullServices.push(getFullServiceByCode(item.code))
-    })
+    });
     return fullServices;
   }
 
-  const getAllServices = (contract) => {
-    return contract.methods.emitAllServices().call();
+    const getAllServices = async (contract) => {
+    let all = await contract.methods.emitAllServices().send({from: accounts[0], wei:1});
+    let codes = all.events.EmitServices.returnValues[1];
+
+    for (let i = 0; i < codes.length; i++){
+      if(codes[i] == 0){
+        codes.splice(i, 1);
+        i--;
+      }
+    }
+    return codes;
   } 
   
   // returns a full service object
@@ -98,68 +85,65 @@ const Services = props => {
   }
   // function for getting all services (useful for all other roles)
   async function emitAllServices(contract) {
-    console.log("contract:");
-    console.log(contract);
-    let fullServices = [];
+    fullServices = [];
     let r = await getAllServices(contract);
-    console.log("lol" + r);
-
-    await r.forEach(async (item) => {
+    const example = async () => {
+    for(const item of r){
       let resp = await getFullServiceByCode(item, contract);
-      console.log(resp);
       const service = {
         code: resp.code_,
         serviceName: resp.serviceName,
         serviceType: resp.serviceType,
         location: resp.location,
-        startdate: resp.startdate,
-        enddate: resp.enddate,
+        startdate: new Date(parseInt(resp.startdate)),
+        enddate: new Date(parseInt(resp.enddate)),
         instructor: resp.instructor,
         costs: resp.costs
       };
-      
-      setData([...[service]]);
-    });
-
-      setLoading(false);      
-      return fullServices;
+      fullServices.push(service);
+    }       
+  }
+  example().then(() => {
+    setLoading(false);  
+    setData(fullServices);    
+    return fullServices;
+  })
+    
   }
 
   // creates new service
   async function createNewService(service, contract) {
-    console.log("Create new service:");
-    // console.log(
-    //   parseInt(service.code),
-    //   service.serviceType.toString(),
-    //   service.serviceName.toString(),
-    //   service.location.toString(),
-    //   service.startdate.getTime(),
-    //   service.enddate.getTime(),
-    //   service.instructor.toString(),
-    //   parseInt(service.costs)
-    // );
-    const accounts = await web3.eth.getAccounts();
-    console.log(accounts[0]);
+    let newservice = {
+      code: service.code,
+      serviceType: service.serviceType,
+      serviceName: service.serviceName,
+      location: service.location,
+      startdate: service.startdate,
+      enddate: service.enddate,
+      instructor: service.instructor,
+      costs: service.costs
+    }
+    if(accounts.length == 0){
+      accounts = await web3.eth.getAccounts();
+    }
     var resp =  await contract.methods.createService(
-      111, "blah", "test", "blah-blah", 1580738546707, 1580738546713, "1", 1
-      // parseInt(service.code),
-      // service.serviceType.toString(),
-      // service.serviceName.toString(),
-      // service.location.toString(),
-      // service.startdate.getTime(),
-      // service.enddate.getTime(),
-      // service.instructor.toString(),
-      // parseInt(service.costs)
-    ).call({from: accounts[0]});
-    // .send({ from: accounts[0]});
-    console.log("creating service");
-    console.log(resp);
-    updateData();
-    getAllServices(contract);
+      parseInt(service.code),
+      service.serviceType.toString(),
+      service.serviceName.toString(),
+      service.location.toString(),
+      service.startdate.getTime(),
+      service.enddate.getTime(),
+      service.instructor.toString(),
+      parseInt(service.costs)
+    ).send({from: accounts[0], wei:1});
+    data.push(newservice);
+    let old = [...data];
+    setData([...old]);
   }
 
-  function updateData(contract) {
-    // This needs to update the list of services depending on the user role
+  async function updateData(contract) {
+    
+    // TODO This needs to update the list of services depending on the user role
     // if (serviceProviderRole){
     //   getMyCourcesCodes(contract);
     // } else {
@@ -169,7 +153,20 @@ const Services = props => {
 
   // this should be called on edit
   async function editService(service, contract) {
-    var resp = await contract.methods["updateService"]({
+    if(accounts.length == 0){
+      accounts = await web3.eth.getAccounts();
+    }
+    var resp = await contract.methods.updateService(
+      parseInt(service.code),
+      service.serviceType.toString(),
+      service.serviceName.toString(),
+      service.location.toString(),
+      new Date(service.startdate).getTime(),
+      new Date(service.enddate).getTime(),
+      service.instructor.toString(),
+      parseInt(service.costs)
+    ).send({from: accounts[0], wei:1});
+    let newservice = {
       code: service.code,
       serviceType: service.serviceType,
       serviceName: service.serviceName,
@@ -177,15 +174,26 @@ const Services = props => {
       startdate: service.startdate,
       enddate: service.enddate,
       instructor: service.instructor,
-      costs: service.cost
-    }).call();
-    updateData(contract);
+      costs: service.costs
+    }
+    var index = data.indexOf(service);
+    if (index !== -1) {
+      data[index] = newservice;
+    }
+    let old = [...data];
+    setData([...old]);
   }
 
   //deleting the service
   async function deleteService(service, contract) {
-    var resp = await contract.methods["deleteService"]({ code: service.code }).call();
-    updateData();
+    if(accounts.length == 0){
+      accounts = await web3.eth.getAccounts();
+    }
+
+    var resp = await contract.methods.deleteService(service.code).send({from: accounts[0], wei:1});
+    data.splice(data.indexOf(service), 1);
+    let old = [...data];
+    setData([...old]);
   }
 
   const [state, setState] = React.useState({
@@ -198,7 +206,7 @@ const Services = props => {
       { title: 'End Date', field: 'enddate', type: 'date' },
       { title: 'Instructor', field: 'instructor' },
       { title: 'Price', field: 'costs', type: 'numeric' },
-    ]// I set this data above in component on mount, but it doesn't work
+    ]
   });
 
   const useStyles = makeStyles(theme => ({
@@ -235,19 +243,18 @@ const Services = props => {
             <div className={classes.marginAutoContainer}>
               <div className={classes.marginAutoItem}>
                 {console.log(data)}
-                {data.length != 0 &&
+                
                 <MaterialTable
                   title="My Services"
                   columns={state.columns}
                   data={data}
                   editable={{
+                    //@Daniyal can you hide these options for collectors, but allow them to buy services?
                     onRowAdd: newData =>
                       new Promise(resolve => {
                         setTimeout(() => {
                           resolve();
                           setState(prevState => {
-                            // const data = [...prevState.data];
-                            // data.push(newData);
                             createNewService(newData, contract);
                             return { ...prevState, data };
                           });
@@ -259,8 +266,7 @@ const Services = props => {
                           resolve();
                           if (oldData) {
                             setState(prevState => {
-                              const data = [...prevState.data];
-                              data[data.indexOf(oldData)] = newData;
+                              editService(newData, contract);
                               return { ...prevState, data };
                             });
                           }
@@ -271,18 +277,13 @@ const Services = props => {
                         setTimeout(() => {
                           resolve();
                           setState(prevState => {
-                            const data = [...prevState.data];
-                            data.splice(data.indexOf(oldData), 1);
+                            deleteService(oldData, contract);
                             return { ...prevState, data };
                           });
                         }, 600);
                       }),
                   }}
                 />
-                }
-                <Button variant="contained" color="primary" onClick={() => history.push("/register")}>
-                  Servicies
-                </Button>
               </div>
             </div>
           </Grid>

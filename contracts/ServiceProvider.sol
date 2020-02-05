@@ -16,8 +16,9 @@
 
       mapping(address => Service[]) public serviseCreator;
       mapping(uint => Service) public serviceCode;
+      mapping(uint => uint) public codeIndexAllServices;
 
-      uint[] public allServices;
+      uint[] public allServices = [0];
 
       event ServiceIsCreated(uint code, string serviceName);
       event ServiceIsUpdated(uint code, string serviceName);
@@ -36,6 +37,12 @@
 
       uint totalServices = 0;
 
+      modifier legalCode(uint code){
+         require(code != 0, "Code 0 is not allowed.");
+         require(codesEqual((serviceCode[code]).code, 0), "This code is already used.");
+        _;
+      }
+
       function createService(
          uint code,
          string memory serviceType,
@@ -45,10 +52,12 @@
          uint enddate,
          string memory instructor,
          uint256 costs
-      ) public returns(bool){
-         serviseCreator[msg.sender].push(Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs));
-         serviceCode[code] = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);
+      ) public legalCode(code) returns(bool){
+         Service memory s = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);
+         serviseCreator[msg.sender].push(s);
+         serviceCode[code] = s;
          allServices.push(code);
+         codeIndexAllServices[code] = (allServices.length - 1);
          totalServices++;
          emit ServiceIsCreated(code, serviceName);
          return true;
@@ -64,8 +73,9 @@
          string memory instructor,
          uint256 costs
       ) public {
-         serviseCreator[msg.sender].push(Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs));
-         serviceCode[code] = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);
+         Service memory s = Service(code, msg.sender, serviceType, serviceName, location, startdate, enddate, instructor, costs);
+         serviseCreator[msg.sender].push(s);
+         serviceCode[code] = s;
          for(uint256 i = 0; i < serviseCreator[msg.sender].length; i++){
             Service memory s = serviseCreator[msg.sender][i];
             if(codesEqual(code, s.code)){
@@ -82,7 +92,7 @@
             }
          }
       }
-
+// codeIndexAllServices
       function deleteService(uint code) public {
          require(totalServices > 0, 'No services are found');
          for(uint256 i = 0; i < serviseCreator[msg.sender].length; i++){
@@ -91,7 +101,9 @@
                delete serviseCreator[msg.sender][serviseCreator[msg.sender].length-1];
                if (serviceCode[code].owner == msg.sender){
                   delete serviceCode[code];
-                  allServices[i] = allServices[totalServices-1];
+                  allServices[codeIndexAllServices[code]] = allServices[totalServices];
+                  delete allServices[totalServices];
+                  delete codeIndexAllServices[code];// avoid 0 index TODO
                   totalServices--;
                   emit ServiceIsDeleted(code);
                }
@@ -185,9 +197,9 @@
          return codes;
       }
 
-      function emitAllServices() public view returns (uint[] memory){
-         // emit EmitServices(msg.sender, allServices);
-         return allServices;
+      function emitAllServices() public {
+         emit EmitServices(msg.sender, allServices);
+         // return allServices;
       }
 
       function codesEqual (uint a, uint b) internal pure returns (bool) {
