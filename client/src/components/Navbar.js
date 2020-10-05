@@ -46,13 +46,13 @@ const Navbar = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          { <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton> */}
+          </IconButton> }
           <Typography variant="h6" className={classes.title}>
             Anatoken
           </Typography>
-          {/* {auth && (
+          { auth && (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -82,7 +82,7 @@ const Navbar = () => {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
-          )} */}
+          )} 
         </Toolbar>
       </AppBar>
     </div>
