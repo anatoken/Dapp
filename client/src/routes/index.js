@@ -6,6 +6,7 @@ import history from "../utils/history";
 import Home from "./home";
 import Register from "./register";
 import Collector from "./collector";
+import University from "./university";
 import Services from "./services";
 
 import getWeb3 from "../utils/getWeb3";
@@ -41,6 +42,7 @@ const AppRouter = () => {
             <Route path="/" exact component={Home} />
             <Route path="/register" exact component={Register} />
             <Route path="/collector" exact component={Collector} />
+            <Route path="/university" exact component={University} />
             <Route path="/services" exact component={Services} />
           </Switch>
         </Router>
