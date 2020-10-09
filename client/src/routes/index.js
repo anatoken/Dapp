@@ -4,10 +4,14 @@ import Navbar from "../components/Navbar";
 
 import history from "../utils/history";
 import Home from "./home";
+import Services from "./services";
 import Register from "./register";
+
+
 import Collector from "./collector";
 import University from "./university";
-import Services from "./services";
+import RecyclePlant from "./recycleplant";
+
 
 import getWeb3 from "../utils/getWeb3";
 import Web3Context from "../utils/Web3Context";
@@ -41,9 +45,10 @@ const AppRouter = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/register" exact component={Register} />
+            <Route path="/services" exact component={Services} />
             <Route path="/collector" exact component={Collector} />
             <Route path="/university" exact component={University} />
-            <Route path="/services" exact component={Services} />
+            <Route path="/recycleplant" exact component={RecyclePlant} />
           </Switch>
         </Router>
       </Web3Context.Provider>

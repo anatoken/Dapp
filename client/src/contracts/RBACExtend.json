@@ -3519,8 +3519,7 @@
     }
   },
   "schemaVersion": "3.2.5",
-  "updatedAt": "2020-10-02T12:11:06.822Z",
-  "networkType": "ethereum",
+  "updatedAt": "2020-10-08T15:38:52.750Z",
   "devdoc": {
     "author": "Djamaile Rahamat",
     "details": "functions build upon the RBAC",
